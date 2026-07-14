@@ -1,0 +1,657 @@
+# SPDX-FileCopyrightText: Copyright © 2026 ReallyMe LLC. All rights reserved
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+# GENERATED FILE. Do not edit by hand.
+# Regenerate with: ruby scripts/generate_taxonomy_views.rb
+
+---
+schema: reallyme.identity.conformance_matrix.v1
+title: ReallyMe Identity Conformance Matrix
+generated_from: master-identity-taxonomy.yaml
+standards:
+  w3c_did_core:
+    version: '1.0'
+    status: w3c_recommendation
+    support: required
+  w3c_did_resolution:
+    version: '0.3'
+    status: w3c_working_draft
+    support: required
+  did_me:
+    version: '1'
+    status: beta
+    specification_uri: https://did-me.org/spec/v1/
+    support: required
+    profile: default
+  openid4vci:
+    version: '1.0'
+    status: final
+    support: required
+  openid4vp:
+    version: '1.0'
+    status: final
+    support: required
+  haip:
+    version: '1.0'
+    status: final
+    support: required
+  eudi_wallet_arf:
+    version: '2.0'
+    latest_known: 2.9.0
+    latest_known_date: '2026-05-21'
+    status: published
+    version_policy: pinned
+    support: required
+    notes:
+    - Pinned at 2.0 as the taxonomy baseline; review latest_known before certification
+      claims.
+  sd_jwt:
+    version: RFC9901
+    status: final
+    support: required
+  sd_jwt_vc:
+    family: draft-ietf-oauth-sd-jwt-vc
+    pinned_version: '17'
+    status: draft
+    support: required
+  token_status_list:
+    family: draft-ietf-oauth-status-list
+    pinned_version: '21'
+    status: draft
+    support: required
+    watch: RFC editor queue; replace pinned draft with RFC number when published.
+    terminology:
+      mechanism: token_status_list
+      issued_artifact: status_list_token
+  bitstring_status_list:
+    specification: w3c_vc_bitstring_status_list
+    version: '1.0'
+    status: w3c_recommendation
+    support: optional
+  iso_18013_5:
+    version: '2021'
+    status: published
+    support: required
+    notes:
+    - Edition 2 is expected to add mdoc revocation/status-list mechanics; keep status
+      checks mode-dependent until then.
+  iso_18013_7:
+    version: '2025'
+    status: published
+    support: optional
+  w3c_vc_data_model:
+    version: '2.0'
+    status: w3c_recommendation
+    support: compatibility
+  dpop:
+    version: RFC9449
+    status: final
+    support: required
+  oauth_authorization_server_metadata:
+    version: RFC8414
+    status: final
+    support: required
+  oauth_attestation_based_client_authentication:
+    family: draft-ietf-oauth-attestation-based-client-auth
+    pinned_version: '10'
+    status: draft
+    support: required
+  oauth_authorization_details:
+    version: RFC9396
+    status: final
+    support: required
+  oauth_pushed_authorization_requests:
+    version: RFC9126
+    status: final
+    support: required
+  openid_federation:
+    version: '1.0'
+    status: final
+    support: optional
+  etsi_ts_119_612:
+    version: 2.4.1
+    status: published
+    support: required
+  etsi_en_319_401:
+    version: 3.2.1
+    status: published
+    support: optional
+  etsi_en_319_411_1:
+    version: 1.5.1
+    status: published
+    support: optional
+  etsi_en_319_411_2:
+    version: 2.6.1
+    status: published
+    support: optional
+  etsi_en_319_421:
+    version: 1.3.1
+    status: published
+    support: optional
+  etsi_ts_119_461:
+    version: 2.1.1
+    status: published
+    support: optional
+  etsi_ts_119_475:
+    version: 1.2.1
+    status: published
+    support: optional
+sdk_command_registry:
+  dids.create:
+    operation_id: identity.dids.create
+    taxonomy_ref: identity.dids.commands.create
+    boundaries:
+    - rust
+    - ffi
+    - wasm
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    - jni
+    required_capabilities:
+    - did_creation
+  dids.resolve:
+    operation_id: identity.dids.resolve
+    taxonomy_ref: identity.dids.commands.resolve
+    boundaries:
+    - rust
+    - ffi
+    - wasm
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    - jni
+    required_capabilities:
+    - did_resolution
+  dids.parse:
+    operation_id: identity.dids.parse
+    taxonomy_ref: identity.dids.commands.parse
+    boundaries:
+    - rust
+    - ffi
+    - wasm
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    - jni
+    required_capabilities:
+    - did_parsing
+  dids.dereference:
+    operation_id: identity.dids.dereference
+    taxonomy_ref: identity.dids.commands.dereference
+    boundaries:
+    - rust
+    - ffi
+    - wasm
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    - jni
+    required_capabilities:
+    - did_local_dereferencing
+  dids.validate:
+    operation_id: identity.dids.validate
+    taxonomy_ref: identity.dids.commands.validate
+    boundaries:
+    - rust
+    - ffi
+    - wasm
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    - jni
+    required_capabilities:
+    - did_validation
+  dids.update:
+    operation_id: identity.dids.update
+    taxonomy_ref: identity.dids.commands.update
+    boundaries:
+    - rust
+    - ffi
+    - wasm
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    - jni
+    required_capabilities:
+    - did_update
+  dids.deactivate:
+    operation_id: identity.dids.deactivate
+    taxonomy_ref: identity.dids.commands.deactivate
+    boundaries:
+    - rust
+    - ffi
+    - wasm
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    - jni
+    required_capabilities:
+    - did_deactivation
+  dids.keys.rotate:
+    operation_id: identity.dids.keys.rotate
+    taxonomy_ref: identity.dids.subresources.keys.commands.rotate
+    boundaries:
+    - rust
+    - ffi
+    - wasm
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    - jni
+    required_capabilities:
+    - did_key_rotation
+  dids.keys.rotate_relationship:
+    operation_id: identity.dids.keys.rotate_relationship
+    taxonomy_ref: identity.dids.subresources.keys.commands.rotate_relationship
+    boundaries:
+    - rust
+    - ffi
+    - wasm
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    - jni
+    required_capabilities:
+    - did_key_rotation
+    - did_relationship_policy
+  dids.keys.replace_compromised:
+    operation_id: identity.dids.keys.replace_compromised
+    taxonomy_ref: identity.dids.subresources.keys.commands.replace_compromised
+    boundaries:
+    - rust
+    - ffi
+    - wasm
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    - jni
+    required_capabilities:
+    - did_compromise_recovery
+  dids.keys.rotate_all:
+    operation_id: identity.dids.keys.rotate_all
+    taxonomy_ref: identity.dids.subresources.keys.commands.rotate_all
+    boundaries:
+    - rust
+    - ffi
+    - wasm
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    - jni
+    required_capabilities:
+    - did_key_rotation
+    - did_relationship_policy
+  dids.keys.set_relationships:
+    operation_id: identity.dids.keys.set_relationships
+    taxonomy_ref: identity.dids.subresources.keys.commands.set_relationships
+    boundaries:
+    - rust
+    - ffi
+    - wasm
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    - jni
+    required_capabilities:
+    - did_relationship_policy
+  issuance.issue:
+    operation_id: identity.issuance.issue
+    taxonomy_ref: identity.issuance.commands.issue
+    boundaries:
+    - rust
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    required_capabilities:
+    - credential_issuance
+  credential_requests.request:
+    operation_id: identity.credential_requests.request
+    taxonomy_ref: identity.credential_requests.commands.request
+    boundaries:
+    - rust
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    required_capabilities:
+    - openid4vci_credential_request
+    - wallet
+  credentials.validate:
+    operation_id: identity.credentials.validate
+    taxonomy_ref: identity.credentials.commands.validate
+    boundaries:
+    - rust
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    required_capabilities:
+    - credential_validation
+  credential_state.check_status:
+    operation_id: identity.credential_state.check_status
+    taxonomy_ref: identity.credential_state.commands.check_status
+    boundaries:
+    - rust
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    required_capabilities:
+    - credential_status_check
+  presentations.request:
+    operation_id: identity.presentations.request
+    taxonomy_ref: identity.presentations.commands.request
+    boundaries:
+    - rust
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    required_capabilities:
+    - openid4vp
+    - verifier
+  presentations.present:
+    operation_id: identity.presentations.present
+    taxonomy_ref: identity.presentations.commands.present
+    boundaries:
+    - rust
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    required_capabilities:
+    - openid4vp
+    - wallet
+    - holder_binding
+  presentations.verify:
+    operation_id: identity.presentations.verify
+    taxonomy_ref: identity.presentations.commands.verify
+    boundaries:
+    - rust
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    required_capabilities:
+    - openid4vp
+    - presentation_verification
+  wallets.open:
+    operation_id: identity.wallets.open
+    taxonomy_ref: identity.wallets.commands.open
+    boundaries:
+    - rust
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    required_capabilities:
+    - wallet
+  wallets.credentials.store:
+    operation_id: identity.wallets.credentials.store
+    taxonomy_ref: identity.wallets.subresources.credentials.commands.store
+    boundaries:
+    - rust
+    - ffi
+    - wasm
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    - jni
+    required_capabilities:
+    - wallet
+  wallets.credentials.list:
+    operation_id: identity.wallets.credentials.list
+    taxonomy_ref: identity.wallets.subresources.credentials.commands.list
+    boundaries:
+    - rust
+    - ffi
+    - wasm
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    - jni
+    required_capabilities:
+    - wallet
+  trust.evaluate:
+    operation_id: identity.trust.evaluate
+    taxonomy_ref: identity.trust.commands.evaluate
+    boundaries:
+    - rust
+    required_capabilities:
+    - trust_evaluation
+  trust.lists.ingest:
+    operation_id: identity.trust.lists.ingest
+    taxonomy_ref: identity.trust.subresources.lists.commands.ingest
+    boundaries:
+    - rust
+    required_capabilities:
+    - trust_list_ingestion
+  status_resolution.check:
+    operation_id: identity.status_resolution.check
+    taxonomy_ref: identity.status_resolution.commands.check
+    boundaries:
+    - rust
+    required_capabilities:
+    - status_resolution
+check_registries:
+  dids:
+    resolve:
+    - version_in_verified_chain
+    - deactivation_not_conflated_with_absence
+    validate:
+    - structure
+    - method_support
+    - controller
+    - verification_method
+    - relationship_references
+    - genesis_binding
+    - rollback_regression
+    - deactivation_not_conflated_with_absence
+  certificates:
+    validate:
+    - chain
+    - usage
+    - trust_list
+    - expiration
+  credentials:
+    validate:
+    - structure
+    - format
+    - signature
+    - issuer
+    - subject_binding
+    - holder_binding
+    - key_binding
+    - schema
+    - claims
+    - required_claims
+    - not_before
+    - expiration
+    - status
+    - trust_chain
+    - trust_list
+    - assurance_level
+    - credential_type
+    - audience
+    - nonce
+    - algorithm
+    - certificate_chain
+    - policy
+  presentations:
+    verify:
+    - state
+    - nonce
+    - audience
+    - response_uri
+    - signature
+    - origin_binding
+    - holder_binding
+    - key_binding
+    - disclosures
+    - credential_status
+    - issuer_trust
+    - wallet_trust
+    - verifier_policy
+    - transaction_data
+    - age_over_attestation
+  sd_jwt:
+    verify:
+    - issuer_signature
+    - disclosures
+    - digest
+    - key_binding
+    - status
+  did_me:
+    validate_projection:
+    - context_tuple
+    - identifier_syntax
+    - core_cbor_consistency
+    - sequence_prev_key_history
+    - attestations
+    - data_integrity_proof
+    - genesis_binding
+    - update_threshold
+    - messaging_service_entries
+    - key_encoding
+    - default_profile_key_set
+    - default_profile_pq_attestation
+    - canonical_bytes_authoritative
+    verify_attestations:
+    - vm_reference_resolves
+    - alg_matches_verification_method
+    - threshold_met
+    - distinct_methods
+    - allowed_verification_methods
+    - controller_membership
+    - signing_input_domain_tag
+    - default_profile_pq_attestation
+    verify_data_integrity_proof:
+    - data_integrity_proof
+    - unsupported_suite_handling
+    - ecdsa_s_value_acceptance
+    verify_chain:
+    - genesis_binding
+    - version_in_verified_chain
+    - prev_links
+    - monotonic_sequence
+    - rollback_regression
+    - terminal_core_finality
+    - canonical_bytes_authoritative
+  mdoc:
+    verify:
+    - issuer_auth
+    - device_auth
+    - mso
+    - namespaces
+    - validity
+    - status
+    - digest
+    - session_transcript
+  mdl:
+    validate:
+    - age_over
+    - driving_privileges
+    - portrait
+    - document_number
+  wallet_attestations:
+    verify:
+    - key_binding
+    - device_binding
+    - provider_trust
+  trust:
+    evaluate:
+      x509:
+      - certificate
+      - chain
+      - hostname
+      - key_usage
+      - extended_key_usage
+      - policy_oid
+      - revocation
+      - ocsp
+      - crl
+      - valid_at_time
+      did:
+      - document
+      - controller
+      - verification_method
+      - method
+      - valid_at_time
+      - genesis_binding
+      - rollback_regression
+  qualified_trust_services:
+    evaluate:
+    - provider_authorization
+    - service_type
+    - service_status
+    - qualified_status
+    - territory
+    - certificate
+    - trust_list_entry
+    - valid_at_time
+  signatures:
+    validate:
+      common:
+      - cryptographic_signature
+      - certificate
+      - certificate_chain
+      - revocation
+      - signature_policy
+      - timestamp
+      - long_term_evidence
+      by_kind:
+        signature:
+        - signer_identity
+        - certificate_for_electronic_signature
+        - natural_person_binding
+        seal:
+        - seal_creator_identity
+        - certificate_for_electronic_seal
+        - legal_person_binding
+      qualification_checks:
+        qualified:
+        - qualified_certificate
+        - qualified_trust_service_provider
+        - qualified_creation_device_or_service
+        - qualified_service_status
+        - valid_at_signing_time
+  qualified_timestamps:
+    validate:
+    - authority
+    - policy
+    - valid_at_time
+  remote_signing:
+    validate:
+    - sad
+    - signer_authentication
+    - signature_activation_data
+  authorizations:
+    validate:
+    - scope
+    - audience
+    - subject
+  mandates:
+    validate:
+    - scope
+    - representative
+    - represented_party
+    - legal_entity
+    - expiration
+    - chain_of_authority

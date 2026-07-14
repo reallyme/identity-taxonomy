@@ -1,0 +1,30 @@
+# SPDX-FileCopyrightText: Copyright © 2026 ReallyMe LLC. All rights reserved
+#
+# SPDX-License-Identifier: Apache-2.0
+
+name: taxonomy
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+jobs:
+  taxonomy:
+    runs-on: ubuntu-latest
+    env:
+      LANG: C
+      LC_ALL: C
+    steps:
+      - uses: actions/checkout@v5
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: "3.3"
+      - name: Lint taxonomy
+        run: ruby scripts/lint_taxonomy.rb
+      - name: Test taxonomy linter
+        run: ruby scripts/test_lint_taxonomy.rb
+      - name: Check generated taxonomy views
+        if: github.event_name == 'pull_request'
+        run: ruby scripts/generate_taxonomy_views.rb --check

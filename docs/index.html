@@ -1,0 +1,493 @@
+<!doctype html>
+<!--
+SPDX-FileCopyrightText: Copyright © 2026 ReallyMe LLC. All rights reserved
+
+SPDX-License-Identifier: Apache-2.0
+-->
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>ReallyMe Identity Taxonomy</title>
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f7f8fb;
+        --panel: #ffffff;
+        --ink: #17202a;
+        --muted: #5f6b7a;
+        --line: #d8dee8;
+        --accent: #0a6f73;
+        --accent-ink: #084e52;
+        --code: #101820;
+        --code-bg: #ffffff;
+        --mark: #fff2a8;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      body {
+        margin: 0;
+        font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        background: var(--bg);
+        color: var(--ink);
+      }
+
+      header {
+        border-bottom: 1px solid var(--line);
+        background: var(--panel);
+      }
+
+      .topbar {
+        display: grid;
+        grid-template-columns: minmax(220px, 1fr) auto;
+        gap: 16px;
+        align-items: center;
+        max-width: 1480px;
+        margin: 0 auto;
+        padding: 18px 24px;
+      }
+
+      h1 {
+        margin: 0;
+        font-size: 22px;
+        font-weight: 700;
+        letter-spacing: 0;
+      }
+
+      .subtitle {
+        margin-top: 4px;
+        color: var(--muted);
+        font-size: 14px;
+      }
+
+      .actions {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .button,
+      select,
+      input {
+        border: 1px solid var(--line);
+        background: #fff;
+        color: var(--ink);
+        border-radius: 6px;
+        font: inherit;
+        font-size: 14px;
+        min-height: 36px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        padding: 0 12px;
+        text-decoration: none;
+        color: var(--accent-ink);
+        font-weight: 600;
+      }
+
+      select {
+        min-width: 220px;
+        padding: 0 10px;
+      }
+
+      input {
+        width: min(360px, 100%);
+        padding: 0 12px;
+      }
+
+      main {
+        display: grid;
+        grid-template-columns: 280px minmax(0, 1fr);
+        gap: 0;
+        max-width: 1480px;
+        margin: 0 auto;
+        min-height: calc(100vh - 74px);
+      }
+
+      aside {
+        border-right: 1px solid var(--line);
+        padding: 18px 18px 28px 24px;
+        background: #fbfcfe;
+      }
+
+      .section-title {
+        margin: 0 0 10px;
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+      }
+
+      .nav {
+        display: grid;
+        gap: 4px;
+      }
+
+      .nav a {
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        border-radius: 6px;
+        padding: 7px 8px;
+        color: var(--ink);
+        text-decoration: none;
+        font-size: 14px;
+      }
+
+      .nav a:hover,
+      .nav a:focus {
+        background: #e8f3f4;
+        outline: none;
+      }
+
+      .content {
+        min-width: 0;
+        padding: 18px 24px 32px;
+      }
+
+      .toolbar {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 14px;
+      }
+
+      .tabs {
+        display: inline-flex;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        overflow: hidden;
+        background: #fff;
+      }
+
+      .tab {
+        border: 0;
+        border-right: 1px solid var(--line);
+        background: #fff;
+        color: var(--muted);
+        cursor: pointer;
+        font: inherit;
+        font-size: 14px;
+        min-height: 34px;
+        padding: 0 12px;
+      }
+
+      .tab:last-child {
+        border-right: 0;
+      }
+
+      .tab[aria-selected="true"] {
+        background: #e8f3f4;
+        color: var(--accent-ink);
+        font-weight: 700;
+      }
+
+      .status {
+        color: var(--muted);
+        font-size: 13px;
+      }
+
+      .panel[hidden] {
+        display: none;
+      }
+
+      .yaml-key {
+        color: #0a6f73;
+        font-weight: 700;
+      }
+
+      .yaml-comment {
+        color: #7a8796;
+        font-style: italic;
+      }
+
+      .yaml-string {
+        color: #8a4b08;
+      }
+
+      .yaml-number,
+      .yaml-bool {
+        color: #5b3db0;
+      }
+
+      pre {
+        margin: 0;
+        overflow: auto;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: var(--code-bg);
+        color: var(--code);
+        font: 13px/1.55 ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+      }
+
+      code {
+        display: block;
+        min-width: max-content;
+        padding: 18px;
+      }
+
+      #prettyYaml {
+        min-width: 0;
+        white-space: pre-wrap;
+        overflow-wrap: anywhere;
+      }
+
+      .line {
+        display: grid;
+        grid-template-columns: 56px minmax(0, 1fr);
+        gap: 14px;
+      }
+
+      .line-number {
+        color: #8390a1;
+        text-align: right;
+        user-select: none;
+      }
+
+      mark {
+        background: var(--mark);
+        color: inherit;
+        padding: 0 1px;
+      }
+
+      @media (max-width: 860px) {
+        .topbar,
+        main {
+          display: block;
+        }
+
+        .actions {
+          justify-content: flex-start;
+          margin-top: 14px;
+        }
+
+        aside {
+          border-right: 0;
+          border-bottom: 1px solid var(--line);
+        }
+
+        .content {
+          padding: 16px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="topbar">
+        <div>
+          <h1>ReallyMe Identity Taxonomy</h1>
+          <div class="subtitle">Browse the public taxonomy source and generated YAML views.</div>
+        </div>
+        <div class="actions">
+          <select id="fileSelect" aria-label="Taxonomy file"></select>
+        </div>
+      </div>
+    </header>
+    <main>
+      <aside>
+        <p class="section-title">Sections</p>
+        <nav class="nav" id="sectionNav" aria-label="YAML sections"></nav>
+      </aside>
+      <section class="content">
+        <div class="toolbar">
+          <input id="search" type="search" placeholder="Search current YAML" aria-label="Search current YAML">
+          <div class="tabs" role="tablist" aria-label="Viewer mode">
+            <button class="tab" id="prettyTab" type="button" role="tab" aria-selected="true" data-view="pretty">Pretty YAML</button>
+            <button class="tab" id="rawTab" type="button" role="tab" aria-selected="false" data-view="raw">Raw YAML</button>
+          </div>
+          <div class="status" id="status">Loading taxonomy...</div>
+        </div>
+        <pre class="panel" id="prettyPanel" role="tabpanel" aria-labelledby="prettyTab"><code id="prettyYaml"></code></pre>
+        <pre class="panel" id="rawPanel" role="tabpanel" aria-labelledby="rawTab" hidden><code id="yaml"></code></pre>
+      </section>
+    </main>
+    <script>
+      const rawBase = "https://raw.githubusercontent.com/reallyme/identity-taxonomy/main/";
+      const files = [
+        ["Master taxonomy", `${rawBase}master-identity-taxonomy.yaml`],
+        ["SDK surface", `${rawBase}taxonomy-views/sdk_surface.yaml`],
+        ["Hosted API", `${rawBase}taxonomy-views/hosted_api.yaml`],
+        ["Protocol capabilities", `${rawBase}taxonomy-views/protocol_capabilities.yaml`],
+        ["Type system", `${rawBase}taxonomy-views/type_system.yaml`],
+        ["Operation registry", `${rawBase}taxonomy-views/operation_registry.yaml`],
+        ["Conformance matrix", `${rawBase}taxonomy-views/conformance_matrix.yaml`]
+      ];
+
+      const fileSelect = document.getElementById("fileSelect");
+      const sectionNav = document.getElementById("sectionNav");
+      const search = document.getElementById("search");
+      const status = document.getElementById("status");
+      const yamlNode = document.getElementById("yaml");
+      const prettyYamlNode = document.getElementById("prettyYaml");
+      const prettyPanel = document.getElementById("prettyPanel");
+      const rawPanel = document.getElementById("rawPanel");
+      const tabs = [...document.querySelectorAll(".tab")];
+      let currentText = "";
+      let prettyText = "";
+      let currentView = "pretty";
+
+      for (const [label, path] of files) {
+        const option = document.createElement("option");
+        option.value = path;
+        option.textContent = label;
+        fileSelect.append(option);
+      }
+
+      function escapeHtml(value) {
+        return value
+          .replaceAll("&", "&amp;")
+          .replaceAll("<", "&lt;")
+          .replaceAll(">", "&gt;");
+      }
+
+      function escapeRegExp(value) {
+        return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      }
+
+      function lineId(index) {
+        return `line-${index + 1}`;
+      }
+
+      function prettyLineId(index) {
+        return `pretty-line-${index + 1}`;
+      }
+
+      function highlightYamlLine(line) {
+        if (/^\s*#/.test(line)) {
+          return `<span class="yaml-comment">${escapeHtml(line)}</span>`;
+        }
+
+        const match = /^(\s*(?:-\s*)?)([A-Za-z0-9_.@/-]+):(.*)$/.exec(line);
+        if (match) {
+          return `${escapeHtml(match[1])}<span class="yaml-key">${escapeHtml(match[2])}</span>:${highlightYamlValue(match[3])}`;
+        }
+
+        return highlightYamlValue(line);
+      }
+
+      function highlightYamlValue(value) {
+        const escaped = escapeHtml(value);
+        const trimmed = value.trim();
+        if (/^#/.test(trimmed)) {
+          return `<span class="yaml-comment">${escaped}</span>`;
+        }
+        if (/^['"].*['"]$/.test(trimmed)) {
+          return escaped.replace(escapeHtml(trimmed), `<span class="yaml-string">${escapeHtml(trimmed)}</span>`);
+        }
+        if (/^(true|false|null)$/i.test(trimmed)) {
+          return escaped.replace(escapeHtml(trimmed), `<span class="yaml-bool">${escapeHtml(trimmed)}</span>`);
+        }
+        if (/^-?\d+(?:\.\d+)?$/.test(trimmed)) {
+          return escaped.replace(escapeHtml(trimmed), `<span class="yaml-number">${escapeHtml(trimmed)}</span>`);
+        }
+        return escaped;
+      }
+
+      function renderPrettyYaml() {
+        const needle = search.value.trim();
+        const pattern = needle ? new RegExp(escapeRegExp(needle), "gi") : null;
+        const lines = prettyText.split("\n");
+        prettyYamlNode.innerHTML = lines.map((line, index) => {
+          let text = highlightYamlLine(line);
+          if (pattern) {
+            text = text.replace(pattern, (match) => `<mark>${escapeHtml(match)}</mark>`);
+          }
+          return `<span class="line" id="${prettyLineId(index)}"><span class="line-number">${index + 1}</span><span>${text || " "}</span></span>`;
+        }).join("\n");
+
+        const matches = needle
+          ? lines.filter((line) => line.toLowerCase().includes(needle.toLowerCase())).length
+          : 0;
+        status.textContent = `${lines.length} lines${needle ? `, ${matches} matching lines` : ""}`;
+      }
+
+      function renderYaml() {
+        const needle = search.value.trim();
+        const pattern = needle ? new RegExp(escapeRegExp(needle), "gi") : null;
+        const lines = currentText.split("\n");
+        yamlNode.innerHTML = lines.map((line, index) => {
+          let text = escapeHtml(line);
+          if (pattern) {
+            text = text.replace(pattern, (match) => `<mark>${escapeHtml(match)}</mark>`);
+          }
+          return `<span class="line" id="${lineId(index)}"><span class="line-number">${index + 1}</span><span>${text || " "}</span></span>`;
+        }).join("");
+
+        const matches = needle
+          ? lines.filter((line) => line.toLowerCase().includes(needle.toLowerCase())).length
+          : 0;
+        status.textContent = `${lines.length} lines${needle ? `, ${matches} matching lines` : ""}`;
+      }
+
+      function renderSections() {
+        const lines = currentView === "raw" ? currentText.split("\n") : prettyText.split("\n");
+        const sections = [];
+        for (let index = 0; index < lines.length; index += 1) {
+          const match = /^([A-Za-z0-9_][A-Za-z0-9_-]*):\s*(?:#.*)?$/.exec(lines[index]);
+          if (match) {
+            sections.push([match[1], index]);
+          }
+        }
+        sectionNav.replaceChildren();
+        for (const [label, index] of sections) {
+          const anchor = document.createElement("a");
+          anchor.href = currentView === "raw" ? `#${lineId(index)}` : `#${prettyLineId(index)}`;
+          anchor.textContent = label;
+          sectionNav.append(anchor);
+        }
+        if (sections.length === 0) {
+          const empty = document.createElement("span");
+          empty.className = "status";
+          empty.textContent = "No top-level YAML sections found.";
+          sectionNav.append(empty);
+        }
+      }
+
+      async function loadFile(path) {
+        status.textContent = "Loading...";
+        const response = await fetch(path, { cache: "no-cache" });
+        if (!response.ok) {
+          throw new Error(`HTTP ${response.status}`);
+        }
+        currentText = await response.text();
+        prettyText = currentText;
+        renderSections();
+        renderPrettyYaml();
+        renderYaml();
+      }
+
+      function setView(view) {
+        currentView = view;
+        prettyPanel.hidden = view !== "pretty";
+        rawPanel.hidden = view !== "raw";
+        for (const tab of tabs) {
+          tab.setAttribute("aria-selected", String(tab.dataset.view === view));
+        }
+        renderSections();
+      }
+
+      fileSelect.addEventListener("change", () => {
+        loadFile(fileSelect.value).catch((error) => {
+          status.textContent = `Unable to load YAML: ${error.message}`;
+        });
+      });
+
+      search.addEventListener("input", renderYaml);
+      search.addEventListener("input", renderPrettyYaml);
+      tabs.forEach((tab) => tab.addEventListener("click", () => setView(tab.dataset.view)));
+
+      loadFile(fileSelect.value).catch((error) => {
+        status.textContent = `Unable to load YAML: ${error.message}`;
+      });
+    </script>
+  </body>
+</html>

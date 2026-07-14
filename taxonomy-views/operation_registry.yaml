@@ -1,0 +1,1302 @@
+# SPDX-FileCopyrightText: Copyright © 2026 ReallyMe LLC. All rights reserved
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+# GENERATED FILE. Do not edit by hand.
+# Regenerate with: ruby scripts/generate_taxonomy_views.rb
+
+---
+schema: reallyme.identity.operation_registry.v1
+title: ReallyMe Identity Operation Registry
+generated_from: master-identity-taxonomy.yaml
+operation_identity:
+  namespace: identity
+  default_operation_id_template: identity.<resource_path>.<command>
+  stability_rule: 'Published operation identifiers are permanent and must not change
+    when YAML sections are reorganized, command groups are renamed, or language bindings
+    are regenerated.
+
+'
+  explicit_registry_required_for:
+  - sdk_first_path
+  - sdk_command_registry
+  - generated_boundaries
+operation_registry:
+  identity.dids.create:
+    taxonomy_ref: identity.dids.commands.create
+    owner: sdk_local
+    stability: preview
+    interop:
+      standards:
+      - did_me
+      - w3c_did_core
+      profiles:
+      - did_me_default
+  identity.dids.resolve:
+    taxonomy_ref: identity.dids.commands.resolve
+    owner: sdk_local
+    stability: preview
+    interop:
+      standards:
+      - did_me
+      - w3c_did_core
+      - w3c_did_resolution
+      profiles:
+      - did_me_default
+  identity.dids.parse:
+    taxonomy_ref: identity.dids.commands.parse
+    owner: sdk_local
+    stability: preview
+  identity.dids.dereference:
+    taxonomy_ref: identity.dids.commands.dereference
+    owner: sdk_local
+    stability: preview
+    interop:
+      standards:
+      - w3c_did_core
+      - w3c_did_resolution
+  identity.dids.validate:
+    taxonomy_ref: identity.dids.commands.validate
+    owner: sdk_local
+    stability: preview
+  identity.dids.update:
+    taxonomy_ref: identity.dids.commands.update
+    owner: sdk_local
+    stability: preview
+    interop:
+      standards:
+      - did_me
+      - w3c_did_core
+      profiles:
+      - did_me_default
+  identity.dids.deactivate:
+    taxonomy_ref: identity.dids.commands.deactivate
+    owner: sdk_local
+    stability: preview
+  identity.dids.keys.rotate:
+    taxonomy_ref: identity.dids.subresources.keys.commands.rotate
+    owner: sdk_local
+    stability: preview
+  identity.dids.keys.rotate_relationship:
+    taxonomy_ref: identity.dids.subresources.keys.commands.rotate_relationship
+    owner: sdk_local
+    stability: preview
+  identity.dids.keys.replace_compromised:
+    taxonomy_ref: identity.dids.subresources.keys.commands.replace_compromised
+    owner: sdk_local
+    stability: preview
+  identity.dids.keys.rotate_all:
+    taxonomy_ref: identity.dids.subresources.keys.commands.rotate_all
+    owner: sdk_local
+    stability: preview
+  identity.dids.keys.set_relationships:
+    taxonomy_ref: identity.dids.subresources.keys.commands.set_relationships
+    owner: sdk_local
+    stability: preview
+  identity.issuance.issue:
+    taxonomy_ref: identity.issuance.commands.issue
+    owner: sdk_local
+    stability: preview
+    security:
+      authentication: required
+      authorization: required
+      audit: true
+      pii: writes
+    behavior:
+      idempotent: false
+      safe: false
+      repeatable: false
+      expected_latency: network
+      network: required
+      cacheable: false
+      expensive: false
+    emits:
+    - credential.issuance.started
+    - credential.issued
+    oauth_scopes:
+    - credentials.issue
+    names:
+      canonical: identity.issuance.issue
+      sdk: issuer.issueCredential
+      rest: POST /credentials:issue
+      cli: credentials issue
+      graphql: credentialIssue
+    visibility:
+      public: true
+      internal: false
+    module:
+      component: identity-sdk
+      crate: reallyme-identity
+      package: reallyme.identity
+    operation_type: issuance
+    interop:
+      standards:
+      - openid4vci
+      - sd_jwt_vc
+      profiles:
+      - haip
+      - eudi_wallet_arf
+    documentation:
+      hidden: false
+      examples:
+      - issue_credential
+      guides:
+      - issuer_quickstart
+      category: issuance
+    breaking_changes: []
+  identity.credential_requests.request:
+    taxonomy_ref: identity.credential_requests.commands.request
+    owner: sdk_local
+    stability: preview
+  identity.credentials.validate:
+    taxonomy_ref: identity.credentials.commands.validate
+    owner: sdk_local
+    stability: preview
+  identity.credential_state.check_status:
+    taxonomy_ref: identity.credential_state.commands.check_status
+    owner: sdk_local
+    stability: preview
+  identity.credential_state.revoke:
+    taxonomy_ref: identity.credential_state.commands.revoke
+    owner: sdk_local
+    stability: preview
+    security:
+      authentication: required
+      authorization: required
+      audit: true
+      pii: writes
+    behavior:
+      idempotent: true
+      safe: false
+      repeatable: true
+      expected_latency: network
+      network: required
+      cacheable: false
+      expensive: false
+    emits:
+    - credential.revoked
+    - credential.status_changed
+    oauth_scopes:
+    - credentials.write
+    names:
+      canonical: identity.credential_state.revoke
+      sdk: issuer.revokeCredential
+      rest: POST /credentials/{id}:revoke
+      cli: credentials revoke
+      graphql: credentialRevoke
+    visibility:
+      public: true
+      internal: false
+    module:
+      component: identity-sdk
+      crate: reallyme-identity
+      package: reallyme.identity
+    operation_type: lifecycle
+    interop:
+      standards:
+      - token_status_list
+      - bitstring_status_list
+      profiles:
+      - eudi_wallet_arf
+    documentation:
+      hidden: false
+      examples:
+      - revoke_credential
+      guides:
+      - issuer_quickstart
+      category: credential_state
+    breaking_changes: []
+  identity.presentations.request:
+    taxonomy_ref: identity.presentations.commands.request
+    owner: sdk_local
+    stability: preview
+  identity.presentations.present:
+    taxonomy_ref: identity.presentations.commands.present
+    owner: sdk_local
+    stability: preview
+  identity.presentations.verify:
+    taxonomy_ref: identity.presentations.commands.verify
+    owner: sdk_local
+    stability: preview
+    security:
+      authentication: optional
+      authorization: required
+      audit: true
+      pii: reads
+    behavior:
+      idempotent: true
+      safe: true
+      repeatable: true
+      expected_latency: network
+      network: optional
+      cacheable: false
+      expensive: true
+    emits:
+    - presentation.validated
+    oauth_scopes:
+    - presentations.verify
+    names:
+      canonical: identity.presentations.verify
+      sdk: verifier.verifyPresentation
+      rest: POST /presentations:verify
+      cli: presentations verify
+      graphql: presentationVerify
+    visibility:
+      public: true
+      internal: false
+    module:
+      component: identity-sdk
+      crate: reallyme-identity
+      package: reallyme.identity
+    operation_type: verification
+    interop:
+      standards:
+      - openid4vp
+      - sd_jwt_vc
+      - iso_18013_5
+      profiles:
+      - haip
+      - eudi_wallet_arf
+    documentation:
+      hidden: false
+      examples:
+      - verify_presentation_redirect
+      - verify_presentation_dc_api
+      guides:
+      - verifier_quickstart
+      category: verification
+    breaking_changes: []
+  identity.wallets.open:
+    taxonomy_ref: identity.wallets.commands.open
+    owner: sdk_local
+    stability: preview
+  identity.wallets.credentials.store:
+    taxonomy_ref: identity.wallets.subresources.credentials.commands.store
+    owner: sdk_local
+    stability: preview
+  identity.wallets.credentials.list:
+    taxonomy_ref: identity.wallets.subresources.credentials.commands.list
+    owner: sdk_local
+    stability: preview
+  identity.trust.evaluate:
+    taxonomy_ref: identity.trust.commands.evaluate
+    owner: sdk_local
+    stability: preview
+  identity.trust.lists.ingest:
+    taxonomy_ref: identity.trust.subresources.lists.commands.ingest
+    owner: sdk_local
+    stability: preview
+  identity.status_resolution.check:
+    taxonomy_ref: identity.status_resolution.commands.check
+    owner: sdk_local
+    stability: preview
+sdk_command_registry:
+  dids.create:
+    operation_id: identity.dids.create
+    taxonomy_ref: identity.dids.commands.create
+    owner: sdk_local
+    stability: preview
+    since: 0.2.0
+    behavior:
+      idempotent: false
+      side_effects: provider_dependent
+      network_access: provider_dependent
+      offline_capable: provider_dependent
+      authentication: none
+    required_capabilities:
+    - did_creation
+    input_type: DidCreateRequest
+    output_type: DidDocument
+    error_type: IdentityError
+    boundaries:
+    - rust
+    - ffi
+    - wasm
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    - jni
+    docs_surface:
+    - sdk_command_catalog
+    - package_readme
+    proto_package: reallyme.identity.sdk.v1
+    error_domain: ERROR_DOMAIN_IDENTITY_SDK
+    dto_backing: native_abi
+    rust:
+      client_method: IdentityClient.dids.create
+      request_type: DidCreateRequest
+      response_type: DidDocument
+      provider_trait: DidProvider::create_did
+    ffi:
+      call_function: reallyme_did_create
+      register_function: reallyme_did_register_creator
+      creator_callback: DidCreateCallback
+    wasm:
+      export_function: reallyme_did_create
+      provider_helper: createWasmDidProvider
+    swift:
+      client_method: ReallyMeIdentity.dids.create
+      request_type: ReallyMeDidCreateRequest
+      response_type: ReallyMeDidDocument
+      native_provider: ReallyMeRustCAbiNativeProvider
+    kotlin:
+      client_method: ReallyMeIdentity.dids.create
+      request_type: DidCreateRequest
+      response_type: DidDocument
+      jni_provider: ReallyMeJniDidProvider
+  dids.resolve:
+    operation_id: identity.dids.resolve
+    taxonomy_ref: identity.dids.commands.resolve
+    owner: sdk_local
+    stability: preview
+    since: 0.2.0
+    behavior:
+      idempotent: true
+      side_effects: none
+      network_access: provider_dependent
+      offline_capable: provider_dependent
+      authentication: none
+    required_capabilities:
+    - did_resolution
+    input_type: DidResolveRequest
+    output_type: DidResolutionResult
+    error_type: IdentityError
+    boundaries:
+    - rust
+    - ffi
+    - wasm
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    - jni
+    docs_surface:
+    - sdk_command_catalog
+    - package_readme
+    proto_package: reallyme.identity.sdk.v1
+    error_domain: ERROR_DOMAIN_IDENTITY_SDK
+    dto_backing: native_abi
+    rust:
+      client_method: IdentityClient.dids.resolve
+      request_type: DidResolveRequest
+      response_type: DidResolutionResult
+      provider_trait: DidProvider::resolve_did
+    ffi:
+      call_function: reallyme_did_resolve
+      register_function: reallyme_did_register_resolver
+      resolver_callback: DidResolveCallback
+    wasm:
+      export_function: reallyme_did_resolve
+      provider_helper: createWasmDidProvider
+    swift:
+      client_method: ReallyMeIdentity.dids.resolve
+      request_type: ReallyMeDidResolveRequest
+      response_type: ReallyMeDidResolutionResult
+      native_provider: ReallyMeRustCAbiNativeProvider
+    kotlin:
+      client_method: ReallyMeIdentity.dids.resolve
+      request_type: DidResolveRequest
+      response_type: DidResolutionResult
+      jni_provider: ReallyMeJniDidProvider
+  dids.parse:
+    operation_id: identity.dids.parse
+    taxonomy_ref: identity.dids.commands.parse
+    owner: sdk_local
+    stability: preview
+    since: 0.2.0
+    behavior:
+      idempotent: true
+      side_effects: none
+      network_access: forbidden
+      offline_capable: true
+      authentication: none
+    required_capabilities:
+    - did_parsing
+    input_type: DidParseRequest
+    output_type: DidParseResult
+    error_type: IdentityError
+    boundaries:
+    - rust
+    - ffi
+    - wasm
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    - jni
+    proto_package: reallyme.identity.sdk.v1
+    error_domain: ERROR_DOMAIN_IDENTITY_SDK
+    dto_backing: native_abi
+  dids.dereference:
+    operation_id: identity.dids.dereference
+    taxonomy_ref: identity.dids.commands.dereference
+    owner: sdk_local
+    stability: preview
+    since: 0.2.0
+    behavior:
+      idempotent: true
+      side_effects: none
+      network_access: provider_dependent
+      offline_capable: provider_dependent
+      authentication: none
+    required_capabilities:
+    - did_local_dereferencing
+    optional_capabilities:
+    - did_url_dereferencing
+    input_type: DidDereferenceRequest
+    output_type: DidDereferenceResult
+    error_type: IdentityError
+    boundaries:
+    - rust
+    - ffi
+    - wasm
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    - jni
+    proto_package: reallyme.identity.sdk.v1
+    error_domain: ERROR_DOMAIN_IDENTITY_SDK
+    dto_backing: native_abi
+  dids.validate:
+    operation_id: identity.dids.validate
+    taxonomy_ref: identity.dids.commands.validate
+    owner: sdk_local
+    stability: preview
+    since: 0.2.0
+    behavior:
+      idempotent: true
+      side_effects: none
+      network_access: provider_dependent
+      offline_capable: provider_dependent
+      authentication: none
+    required_capabilities:
+    - did_validation
+    input_type: DidValidationRequest
+    output_type: DidValidationResult
+    error_type: IdentityError
+    boundaries:
+    - rust
+    - ffi
+    - wasm
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    - jni
+    proto_package: reallyme.identity.sdk.v1
+    error_domain: ERROR_DOMAIN_IDENTITY_SDK
+    dto_backing: native_abi
+  dids.update:
+    operation_id: identity.dids.update
+    taxonomy_ref: identity.dids.commands.update
+    owner: sdk_local
+    stability: preview
+    since: 0.2.0
+    behavior:
+      idempotent: false
+      side_effects: provider_dependent
+      network_access: provider_dependent
+      offline_capable: provider_dependent
+      authentication: required
+    required_capabilities:
+    - did_update
+    input_type: DidUpdateRequest
+    output_type: DidDocument
+    error_type: IdentityError
+    boundaries:
+    - rust
+    - ffi
+    - wasm
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    - jni
+    proto_package: reallyme.identity.sdk.v1
+    error_domain: ERROR_DOMAIN_IDENTITY_SDK
+    dto_backing: native_abi
+  dids.deactivate:
+    operation_id: identity.dids.deactivate
+    taxonomy_ref: identity.dids.commands.deactivate
+    owner: sdk_local
+    stability: preview
+    since: 0.2.0
+    behavior:
+      idempotent: provider_dependent
+      side_effects: provider_dependent
+      network_access: provider_dependent
+      offline_capable: provider_dependent
+      authentication: required
+    required_capabilities:
+    - did_deactivation
+    input_type: DidDeactivateRequest
+    output_type: DidValidationResult
+    error_type: IdentityError
+    boundaries:
+    - rust
+    - ffi
+    - wasm
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    - jni
+    proto_package: reallyme.identity.sdk.v1
+    error_domain: ERROR_DOMAIN_IDENTITY_SDK
+    dto_backing: native_abi
+  dids.keys.rotate:
+    operation_id: identity.dids.keys.rotate
+    taxonomy_ref: identity.dids.subresources.keys.commands.rotate
+    owner: sdk_local
+    stability: preview
+    since: 0.2.0
+    behavior:
+      idempotent: false
+      side_effects: provider_dependent
+      network_access: provider_dependent
+      offline_capable: provider_dependent
+      authentication: required
+    required_capabilities:
+    - did_key_rotation
+    input_type: DidRotateKeyRequest
+    output_type: DidDocument
+    error_type: IdentityError
+    boundaries:
+    - rust
+    - ffi
+    - wasm
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    - jni
+    proto_package: reallyme.identity.sdk.v1
+    error_domain: ERROR_DOMAIN_IDENTITY_SDK
+    dto_backing: native_abi
+  dids.keys.rotate_relationship:
+    operation_id: identity.dids.keys.rotate_relationship
+    taxonomy_ref: identity.dids.subresources.keys.commands.rotate_relationship
+    owner: sdk_local
+    stability: preview
+    since: 0.2.0
+    behavior:
+      idempotent: false
+      side_effects: provider_dependent
+      network_access: provider_dependent
+      offline_capable: provider_dependent
+      authentication: required
+    required_capabilities:
+    - did_key_rotation
+    - did_relationship_policy
+    input_type: DidRotateRelationshipKeysRequest
+    output_type: DidDocument
+    error_type: IdentityError
+    boundaries:
+    - rust
+    - ffi
+    - wasm
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    - jni
+    proto_package: reallyme.identity.sdk.v1
+    error_domain: ERROR_DOMAIN_IDENTITY_SDK
+    dto_backing: native_abi
+  dids.keys.replace_compromised:
+    operation_id: identity.dids.keys.replace_compromised
+    taxonomy_ref: identity.dids.subresources.keys.commands.replace_compromised
+    owner: sdk_local
+    stability: preview
+    since: 0.2.0
+    behavior:
+      idempotent: false
+      side_effects: provider_dependent
+      network_access: provider_dependent
+      offline_capable: provider_dependent
+      authentication: required
+    required_capabilities:
+    - did_compromise_recovery
+    input_type: DidRotateKeyRequest
+    output_type: DidDocument
+    error_type: IdentityError
+    boundaries:
+    - rust
+    - ffi
+    - wasm
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    - jni
+    proto_package: reallyme.identity.sdk.v1
+    error_domain: ERROR_DOMAIN_IDENTITY_SDK
+    dto_backing: native_abi
+  dids.keys.rotate_all:
+    operation_id: identity.dids.keys.rotate_all
+    taxonomy_ref: identity.dids.subresources.keys.commands.rotate_all
+    owner: sdk_local
+    stability: preview
+    since: 0.2.0
+    behavior:
+      idempotent: false
+      side_effects: provider_dependent
+      network_access: provider_dependent
+      offline_capable: provider_dependent
+      authentication: required
+    required_capabilities:
+    - did_key_rotation
+    - did_relationship_policy
+    input_type: DidRotateAllKeysRequest
+    output_type: DidDocument
+    error_type: IdentityError
+    boundaries:
+    - rust
+    - ffi
+    - wasm
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    - jni
+    proto_package: reallyme.identity.sdk.v1
+    error_domain: ERROR_DOMAIN_IDENTITY_SDK
+    dto_backing: native_abi
+  dids.keys.set_relationships:
+    operation_id: identity.dids.keys.set_relationships
+    taxonomy_ref: identity.dids.subresources.keys.commands.set_relationships
+    owner: sdk_local
+    stability: preview
+    since: 0.2.0
+    behavior:
+      idempotent: provider_dependent
+      side_effects: provider_dependent
+      network_access: provider_dependent
+      offline_capable: provider_dependent
+      authentication: required
+    required_capabilities:
+    - did_relationship_policy
+    input_type: DidSetKeyRelationshipsRequest
+    output_type: DidDocument
+    error_type: IdentityError
+    boundaries:
+    - rust
+    - ffi
+    - wasm
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    - jni
+    proto_package: reallyme.identity.sdk.v1
+    error_domain: ERROR_DOMAIN_IDENTITY_SDK
+    dto_backing: native_abi
+  issuance.issue:
+    operation_id: identity.issuance.issue
+    taxonomy_ref: identity.issuance.commands.issue
+    owner: sdk_local
+    stability: preview
+    since: 0.2.0
+    behavior:
+      idempotent: false
+      side_effects: provider_dependent
+      network_access: provider_dependent
+      offline_capable: provider_dependent
+      authentication: required
+    required_capabilities:
+    - credential_issuance
+    input_type: CredentialIssueRequest
+    output_type: CredentialResourceRecord
+    error_type: IdentityError
+    boundaries:
+    - rust
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    docs_surface:
+    - sdk_command_catalog
+    - package_readme
+    proto_package: reallyme.identity.sdk.v1
+    error_domain: ERROR_DOMAIN_IDENTITY_SDK
+    dto_backing: language_facade
+    rust:
+      client_method: IdentityClient.issuance.issue
+      request_type: CredentialIssueRequest
+      response_type: CredentialResourceRecord
+      provider_trait: CredentialProvider::issue_credential
+    typescript:
+      client_method: ReallyMeIdentity.issuance.issue
+      request_type: CredentialIssueRequest
+      response_type: CredentialResourceRecord
+    swift:
+      client_method: ReallyMeIdentity.issuance.issue
+      request_type: ReallyMeCredentialIssueRequest
+      response_type: ReallyMeCredentialRecord
+    kotlin:
+      client_method: ReallyMeIdentity.issuance.issue
+      request_type: CredentialIssueRequest
+      response_type: CredentialResourceRecord
+  credential_requests.request:
+    operation_id: identity.credential_requests.request
+    taxonomy_ref: identity.credential_requests.commands.request
+    owner: sdk_local
+    stability: preview
+    since: 0.2.0
+    behavior:
+      idempotent: false
+      side_effects: provider_dependent
+      network_access: provider_dependent
+      offline_capable: provider_dependent
+      authentication: required
+    required_capabilities:
+    - openid4vci_credential_request
+    - wallet
+    input_type: CredentialRequest
+    output_type: CredentialResourceRecord
+    error_type: IdentityError
+    boundaries:
+    - rust
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    docs_surface:
+    - sdk_command_catalog
+    - package_readme
+    proto_package: reallyme.identity.sdk.v1
+    error_domain: ERROR_DOMAIN_IDENTITY_SDK
+    dto_backing: language_facade
+    rust:
+      client_method: IdentityClient.credential_requests.request
+      request_type: CredentialRequest
+      response_type: CredentialResourceRecord
+      provider_trait: CredentialProvider::request_credential
+    typescript:
+      client_method: ReallyMeIdentity.credentialRequests.request
+      request_type: CredentialRequestRequest
+      response_type: CredentialResourceRecord
+    swift:
+      client_method: ReallyMeIdentity.credentialRequests.request
+      request_type: ReallyMeCredentialRequest
+      response_type: ReallyMeCredentialRecord
+    kotlin:
+      client_method: ReallyMeIdentity.credentialRequests.request
+      request_type: CredentialRequest
+      response_type: CredentialResourceRecord
+  credentials.validate:
+    operation_id: identity.credentials.validate
+    taxonomy_ref: identity.credentials.commands.validate
+    owner: sdk_local
+    stability: preview
+    since: 0.2.0
+    behavior:
+      idempotent: true
+      side_effects: none
+      network_access: provider_dependent
+      offline_capable: provider_dependent
+      authentication: none
+    required_capabilities:
+    - credential_validation
+    input_type: CredentialValidateRequest
+    output_type: CredentialValidationResult
+    canonical_type: ValidationResult
+    error_type: IdentityError
+    boundaries:
+    - rust
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    docs_surface:
+    - sdk_command_catalog
+    - package_readme
+    proto_package: reallyme.identity.sdk.v1
+    error_domain: ERROR_DOMAIN_IDENTITY_SDK
+    dto_backing: language_facade
+    rust:
+      client_method: IdentityClient.credentials.validate
+      request_type: CredentialValidateRequest
+      response_type: CredentialValidationResult
+      provider_trait: CredentialProvider::validate_credential
+    typescript:
+      client_method: ReallyMeIdentity.credentials.validate
+      request_type: CredentialValidateRequest
+      response_type: CredentialValidationResult
+    swift:
+      client_method: ReallyMeIdentity.credentials.validate
+      request_type: ReallyMeCredentialValidateRequest
+      response_type: ReallyMeCredentialValidationResult
+    kotlin:
+      client_method: ReallyMeIdentity.credentials.validate
+      request_type: CredentialValidateRequest
+      response_type: CredentialValidationResult
+  credential_state.check_status:
+    operation_id: identity.credential_state.check_status
+    taxonomy_ref: identity.credential_state.commands.check_status
+    owner: sdk_local
+    stability: preview
+    since: 0.2.0
+    behavior:
+      idempotent: true
+      side_effects: provider_dependent
+      network_access: provider_dependent
+      offline_capable: provider_dependent
+      authentication: none
+    required_capabilities:
+    - credential_status_check
+    input_type: CredentialCheckStatusRequest
+    output_type: CredentialStatusResult
+    canonical_type: CredentialStatus
+    error_type: IdentityError
+    boundaries:
+    - rust
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    docs_surface:
+    - sdk_command_catalog
+    - package_readme
+    proto_package: reallyme.identity.sdk.v1
+    error_domain: ERROR_DOMAIN_IDENTITY_SDK
+    dto_backing: language_facade
+    rust:
+      client_method: IdentityClient.credential_state.check_status
+      request_type: CredentialCheckStatusRequest
+      response_type: CredentialStatusResult
+      provider_trait: CredentialProvider::check_credential_status
+    typescript:
+      client_method: ReallyMeIdentity.credentialState.checkStatus
+      request_type: CredentialCheckStatusRequest
+      response_type: CredentialStatusResult
+    swift:
+      client_method: ReallyMeIdentity.credentialState.checkStatus
+      request_type: ReallyMeCredentialCheckStatusRequest
+      response_type: ReallyMeCredentialStatusResult
+    kotlin:
+      client_method: ReallyMeIdentity.credentialState.checkStatus
+      request_type: CredentialCheckStatusRequest
+      response_type: CredentialStatusResult
+  presentations.request:
+    operation_id: identity.presentations.request
+    taxonomy_ref: identity.presentations.commands.request
+    owner: sdk_local
+    stability: preview
+    since: 0.2.0
+    behavior:
+      idempotent: false
+      side_effects: provider_dependent
+      network_access: provider_dependent
+      offline_capable: provider_dependent
+      authentication: required
+    required_capabilities:
+    - openid4vp
+    - verifier
+    input_type: PresentationRequestCreateRequest
+    output_type: PresentationRequestRecord
+    error_type: IdentityError
+    boundaries:
+    - rust
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    docs_surface:
+    - sdk_command_catalog
+    - package_readme
+    proto_package: reallyme.identity.sdk.v1
+    error_domain: ERROR_DOMAIN_IDENTITY_SDK
+    dto_backing: language_facade
+    rust:
+      client_method: IdentityClient.presentations.request
+      request_type: PresentationRequestCreateRequest
+      response_type: PresentationRequestRecord
+      provider_trait: PresentationProvider::create_presentation_request
+    typescript:
+      client_method: ReallyMeIdentity.presentations.request
+      request_type: PresentationRequestCreateRequest
+      response_type: PresentationRequestRecord
+    swift:
+      client_method: ReallyMeIdentity.presentations.request
+      request_type: ReallyMePresentationRequestCreateRequest
+      response_type: ReallyMePresentationRequestRecord
+    kotlin:
+      client_method: ReallyMeIdentity.presentations.request
+      request_type: PresentationRequestCreateRequest
+      response_type: PresentationRequestRecord
+  presentations.present:
+    operation_id: identity.presentations.present
+    taxonomy_ref: identity.presentations.commands.present
+    owner: sdk_local
+    stability: preview
+    since: 0.2.0
+    behavior:
+      idempotent: false
+      side_effects: provider_dependent
+      network_access: provider_dependent
+      offline_capable: provider_dependent
+      authentication: required
+    required_capabilities:
+    - openid4vp
+    - wallet
+    - holder_binding
+    optional_capabilities:
+    - wallet_attestation
+    - zero_knowledge
+    input_type: PresentationRequest
+    output_type: PresentationRecord
+    error_type: IdentityError
+    boundaries:
+    - rust
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    docs_surface:
+    - sdk_command_catalog
+    - package_readme
+    proto_package: reallyme.identity.sdk.v1
+    error_domain: ERROR_DOMAIN_IDENTITY_SDK
+    dto_backing: language_facade
+    rust:
+      client_method: IdentityClient.presentations.present
+      request_type: PresentationRequest
+      response_type: PresentationRecord
+      provider_trait: PresentationProvider::present
+    typescript:
+      client_method: ReallyMeIdentity.presentations.present
+      request_type: PresentationRequest
+      response_type: PresentationRecord
+    swift:
+      client_method: ReallyMeIdentity.presentations.present
+      request_type: ReallyMePresentationRequest
+      response_type: ReallyMePresentationRecord
+    kotlin:
+      client_method: ReallyMeIdentity.presentations.present
+      request_type: PresentationRequest
+      response_type: PresentationRecord
+  presentations.verify:
+    operation_id: identity.presentations.verify
+    taxonomy_ref: identity.presentations.commands.verify
+    owner: sdk_local
+    stability: preview
+    since: 0.2.0
+    behavior:
+      idempotent: true
+      side_effects: none
+      network_access: provider_dependent
+      offline_capable: provider_dependent
+      authentication: none
+    required_capabilities:
+    - openid4vp
+    - presentation_verification
+    input_type: PresentationVerifyRequest
+    output_type: VerificationResult
+    canonical_type: PresentationVerificationResult
+    error_type: IdentityError
+    boundaries:
+    - rust
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    docs_surface:
+    - sdk_command_catalog
+    - package_readme
+    proto_package: reallyme.identity.sdk.v1
+    error_domain: ERROR_DOMAIN_IDENTITY_SDK
+    dto_backing: language_facade
+    rust:
+      client_method: IdentityClient.presentations.verify
+      request_type: PresentationVerifyRequest
+      response_type: VerificationResult
+      provider_trait: PresentationProvider::verify_presentation
+    typescript:
+      client_method: ReallyMeIdentity.presentations.verify
+      request_type: PresentationVerifyRequest
+      response_type: VerificationResult
+    swift:
+      client_method: ReallyMeIdentity.presentations.verify
+      request_type: ReallyMePresentationVerifyRequest
+      response_type: ReallyMeVerificationResult
+    kotlin:
+      client_method: ReallyMeIdentity.presentations.verify
+      request_type: PresentationVerifyRequest
+      response_type: VerificationResult
+  wallets.open:
+    operation_id: identity.wallets.open
+    taxonomy_ref: identity.wallets.commands.open
+    owner: sdk_local
+    stability: preview
+    since: 0.2.0
+    behavior:
+      idempotent: provider_dependent
+      side_effects: provider_dependent
+      network_access: forbidden
+      offline_capable: true
+      authentication: required
+    required_capabilities:
+    - wallet
+    input_type: WalletOpenRequest
+    output_type: WalletOpenResult
+    error_type: IdentityError
+    boundaries:
+    - rust
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    docs_surface:
+    - sdk_command_catalog
+    - package_readme
+    proto_package: reallyme.identity.sdk.v1
+    error_domain: ERROR_DOMAIN_IDENTITY_SDK
+    dto_backing: language_facade
+    rust:
+      client_method: IdentityClient.wallet.open
+      request_type: WalletOpenRequest
+      response_type: WalletOpenResult
+      provider_trait: WalletProvider::open
+    typescript:
+      client_method: ReallyMeIdentity.wallet.open
+      request_type: WalletOpenRequest
+      response_type: WalletOpenResult
+    swift:
+      client_method: ReallyMeIdentity.wallet.open
+      request_type: ReallyMeWalletOpenRequest
+      response_type: ReallyMeWalletOpenResult
+    kotlin:
+      client_method: ReallyMeIdentity.wallet.open
+      request_type: WalletOpenRequest
+      response_type: WalletOpenResult
+  wallets.credentials.store:
+    operation_id: identity.wallets.credentials.store
+    taxonomy_ref: identity.wallets.subresources.credentials.commands.store
+    owner: sdk_local
+    stability: preview
+    since: 0.2.0
+    behavior:
+      idempotent: provider_dependent
+      side_effects: wallet_storage
+      network_access: forbidden
+      offline_capable: true
+      authentication: required
+    required_capabilities:
+    - wallet
+    input_type: WalletCredentialStoreRequest
+    output_type: WalletCredentialStoreResult
+    error_type: IdentityError
+    boundaries:
+    - rust
+    - ffi
+    - wasm
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    - jni
+    docs_surface:
+    - sdk_command_catalog
+    - package_readme
+    proto_package: reallyme.wallet.v1
+    error_domain: ERROR_DOMAIN_IDENTITY_SDK
+    dto_backing: wallet_core_rpc
+    proto_messages:
+      request: reallyme.wallet.v1.PutCredentialRecordRequest
+      response: reallyme.wallet.v1.PutCredentialRecordResponse
+      error: reallyme.identity.sdk.v1.IdentitySdkError
+    rust:
+      client_method: IdentityClient.wallet.credentials.store
+      request_type: WalletCredentialStoreRequest
+      response_type: WalletCredentialStoreResult
+      provider_trait: WalletCoreProvider::call_wallet_core
+      wallet_core_method: PutCredentialRecord
+    ffi:
+      call_function: reallyme_wallet_core_call
+      wallet_core_method: PutCredentialRecord
+    wasm:
+      export_function: reallyme_wallet_core_call
+      wallet_core_method: PutCredentialRecord
+    typescript:
+      client_method: ReallyMeIdentity.wallet.credentials.store
+      request_type: WalletCredentialStoreRequest
+      response_type: WalletCredentialStoreResult
+    swift:
+      client_method: ReallyMeIdentity.wallet.credentials.store
+      request_type: ReallyMeWalletCredentialStoreRequest
+      response_type: ReallyMeWalletCredentialStoreResult
+    kotlin:
+      client_method: ReallyMeIdentity.wallet.credentials.store
+      request_type: WalletCredentialStoreRequest
+      response_type: WalletCredentialStoreResult
+    jni:
+      call_function: nativeWalletCoreCall
+      wallet_core_method: PutCredentialRecord
+  wallets.credentials.list:
+    operation_id: identity.wallets.credentials.list
+    taxonomy_ref: identity.wallets.subresources.credentials.commands.list
+    owner: sdk_local
+    stability: preview
+    since: 0.2.0
+    behavior:
+      idempotent: true
+      side_effects: none
+      network_access: forbidden
+      offline_capable: true
+      authentication: required
+    required_capabilities:
+    - wallet
+    input_type: WalletCredentialListRequest
+    output_type: WalletCredentialListResult
+    error_type: IdentityError
+    boundaries:
+    - rust
+    - ffi
+    - wasm
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    - jni
+    docs_surface:
+    - sdk_command_catalog
+    - package_readme
+    proto_package: reallyme.wallet.v1
+    error_domain: ERROR_DOMAIN_IDENTITY_SDK
+    dto_backing: wallet_core_rpc
+    proto_messages:
+      request: reallyme.wallet.v1.GetCredentialRecordRequest
+      response: reallyme.wallet.v1.GetCredentialRecordResponse
+      error: reallyme.identity.sdk.v1.IdentitySdkError
+    rust:
+      client_method: IdentityClient.wallet.credentials.list
+      request_type: WalletCredentialListRequest
+      response_type: WalletCredentialListResult
+      provider_trait: WalletCoreProvider::call_wallet_core
+      wallet_core_method: GetCredentialRecord
+    ffi:
+      call_function: reallyme_wallet_core_call
+      wallet_core_method: GetCredentialRecord
+    wasm:
+      export_function: reallyme_wallet_core_call
+      wallet_core_method: GetCredentialRecord
+    typescript:
+      client_method: ReallyMeIdentity.wallet.credentials.list
+      request_type: WalletCredentialListRequest
+      response_type: WalletCredentialListResult
+    swift:
+      client_method: ReallyMeIdentity.wallet.credentials.list
+      request_type: ReallyMeWalletCredentialListRequest
+      response_type: ReallyMeWalletCredentialListResult
+    kotlin:
+      client_method: ReallyMeIdentity.wallet.credentials.list
+      request_type: WalletCredentialListRequest
+      response_type: WalletCredentialListResult
+    jni:
+      call_function: nativeWalletCoreCall
+      wallet_core_method: GetCredentialRecord
+  trust.evaluate:
+    operation_id: identity.trust.evaluate
+    taxonomy_ref: identity.trust.commands.evaluate
+    owner: sdk_local
+    stability: preview
+    since: 0.2.0
+    behavior:
+      idempotent: true
+      side_effects: none
+      network_access: provider_dependent
+      offline_capable: provider_dependent
+      authentication: none
+    required_capabilities:
+    - trust_evaluation
+    input_type: TrustEvaluateRequest
+    output_type: TrustEvaluationResult
+    canonical_type: TrustDecision
+    error_type: IdentityError
+    dto_backing: language_facade
+    boundaries:
+    - rust
+    docs_surface:
+    - sdk_command_catalog
+    - package_readme
+    proto_package: reallyme.identity.sdk.v1
+    error_domain: ERROR_DOMAIN_IDENTITY_SDK
+    rust:
+      client_method: IdentityClient.trust.evaluate
+      request_type: TrustEvaluateRequest
+      response_type: TrustEvaluationResult
+      provider_trait: TrustProvider::evaluate_trust
+  trust.lists.ingest:
+    operation_id: identity.trust.lists.ingest
+    taxonomy_ref: identity.trust.subresources.lists.commands.ingest
+    owner: sdk_local
+    stability: preview
+    since: 0.2.0
+    behavior:
+      idempotent: provider_dependent
+      side_effects: provider_dependent
+      network_access: forbidden
+      offline_capable: true
+      authentication: none
+    required_capabilities:
+    - trust_list_ingestion
+    input_type: TrustListIngestRequest
+    output_type: TrustListIngestResult
+    error_type: IdentityError
+    dto_backing: language_facade
+    boundaries:
+    - rust
+    docs_surface:
+    - sdk_command_catalog
+    - package_readme
+    proto_package: reallyme.identity.sdk.v1
+    error_domain: ERROR_DOMAIN_IDENTITY_SDK
+    rust:
+      client_method: IdentityClient.trust.lists.ingest
+      request_type: TrustListIngestRequest
+      response_type: TrustListIngestResult
+      provider_trait: TrustProvider::ingest_trust_list
+  status_resolution.check:
+    operation_id: identity.status_resolution.check
+    taxonomy_ref: identity.status_resolution.commands.check
+    owner: sdk_local
+    stability: preview
+    since: 0.2.0
+    behavior:
+      idempotent: true
+      side_effects: provider_dependent
+      network_access: provider_dependent
+      offline_capable: provider_dependent
+      authentication: none
+    required_capabilities:
+    - status_resolution
+    input_type: StatusResolutionCheckRequest
+    output_type: StatusResolutionCheckResult
+    canonical_type: CredentialStatus
+    error_type: IdentityError
+    dto_backing: language_facade
+    boundaries:
+    - rust
+    docs_surface:
+    - sdk_command_catalog
+    - package_readme
+    proto_package: reallyme.identity.sdk.v1
+    error_domain: ERROR_DOMAIN_IDENTITY_SDK
+    rust:
+      client_method: IdentityClient.status_resolution.check
+      request_type: StatusResolutionCheckRequest
+      response_type: StatusResolutionCheckResult
+      provider_trait: StatusResolutionProvider::check_status
+oauth_scopes:
+- credentials.issue
+- credentials.read
+- credentials.write
+- presentations.request
+- presentations.present
+- presentations.verify
+- trust.evaluate
+- wallet.read
+- wallet.write

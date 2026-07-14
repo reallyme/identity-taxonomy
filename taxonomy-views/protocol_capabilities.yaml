@@ -1,0 +1,530 @@
+# SPDX-FileCopyrightText: Copyright © 2026 ReallyMe LLC. All rights reserved
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+# GENERATED FILE. Do not edit by hand.
+# Regenerate with: ruby scripts/generate_taxonomy_views.rb
+
+---
+schema: reallyme.identity.protocol_capabilities.v1
+title: ReallyMe Identity Protocol And Capability Taxonomy
+generated_from: master-identity-taxonomy.yaml
+credential_formats:
+  core:
+    sd_jwt_vc:
+      name: IETF SD-JWT VC
+      support: required
+      openid_format_identifier: dc+sd-jwt
+      media_types:
+      - application/dc+sd-jwt
+      jose_typ_values:
+        current: dc+sd-jwt
+        legacy:
+        - vc+sd-jwt
+      specification: sd_jwt_vc
+    mdoc:
+      name: ISO/IEC 18013-5 mdoc
+      support: required
+      openid_format_identifier: mso_mdoc
+      specifications:
+      - iso_18013_5
+  compatibility:
+    w3c_vc_jwt:
+      name: W3C VC secured as JWT
+      support: compatibility
+      data_model: w3c_vc_data_model
+      openid_format_identifier: jwt_vc_json
+      status: compatibility
+    w3c_vc_data_integrity:
+      name: W3C VC secured with Data Integrity
+      support: optional
+      data_model: w3c_vc_data_model
+      openid_format_identifier: ldp_vc
+      status: compatibility
+standards:
+  w3c_did_core:
+    version: '1.0'
+    status: w3c_recommendation
+    support: required
+  w3c_did_resolution:
+    version: '0.3'
+    status: w3c_working_draft
+    support: required
+  did_me:
+    version: '1'
+    status: beta
+    specification_uri: https://did-me.org/spec/v1/
+    support: required
+    profile: default
+  openid4vci:
+    version: '1.0'
+    status: final
+    support: required
+  openid4vp:
+    version: '1.0'
+    status: final
+    support: required
+  haip:
+    version: '1.0'
+    status: final
+    support: required
+  eudi_wallet_arf:
+    version: '2.0'
+    latest_known: 2.9.0
+    latest_known_date: '2026-05-21'
+    status: published
+    version_policy: pinned
+    support: required
+    notes:
+    - Pinned at 2.0 as the taxonomy baseline; review latest_known before certification
+      claims.
+  sd_jwt:
+    version: RFC9901
+    status: final
+    support: required
+  sd_jwt_vc:
+    family: draft-ietf-oauth-sd-jwt-vc
+    pinned_version: '17'
+    status: draft
+    support: required
+  token_status_list:
+    family: draft-ietf-oauth-status-list
+    pinned_version: '21'
+    status: draft
+    support: required
+    watch: RFC editor queue; replace pinned draft with RFC number when published.
+    terminology:
+      mechanism: token_status_list
+      issued_artifact: status_list_token
+  bitstring_status_list:
+    specification: w3c_vc_bitstring_status_list
+    version: '1.0'
+    status: w3c_recommendation
+    support: optional
+  iso_18013_5:
+    version: '2021'
+    status: published
+    support: required
+    notes:
+    - Edition 2 is expected to add mdoc revocation/status-list mechanics; keep status
+      checks mode-dependent until then.
+  iso_18013_7:
+    version: '2025'
+    status: published
+    support: optional
+  w3c_vc_data_model:
+    version: '2.0'
+    status: w3c_recommendation
+    support: compatibility
+  dpop:
+    version: RFC9449
+    status: final
+    support: required
+  oauth_authorization_server_metadata:
+    version: RFC8414
+    status: final
+    support: required
+  oauth_attestation_based_client_authentication:
+    family: draft-ietf-oauth-attestation-based-client-auth
+    pinned_version: '10'
+    status: draft
+    support: required
+  oauth_authorization_details:
+    version: RFC9396
+    status: final
+    support: required
+  oauth_pushed_authorization_requests:
+    version: RFC9126
+    status: final
+    support: required
+  openid_federation:
+    version: '1.0'
+    status: final
+    support: optional
+  etsi_ts_119_612:
+    version: 2.4.1
+    status: published
+    support: required
+  etsi_en_319_401:
+    version: 3.2.1
+    status: published
+    support: optional
+  etsi_en_319_411_1:
+    version: 1.5.1
+    status: published
+    support: optional
+  etsi_en_319_411_2:
+    version: 2.6.1
+    status: published
+    support: optional
+  etsi_en_319_421:
+    version: 1.3.1
+    status: published
+    support: optional
+  etsi_ts_119_461:
+    version: 2.1.1
+    status: published
+    support: optional
+  etsi_ts_119_475:
+    version: 1.2.1
+    status: published
+    support: optional
+profiles:
+- did_me_default
+- haip
+- eudi_wallet_arf
+metadata_specs:
+- oauth_authorization_server_metadata
+- openid4vci_issuer_metadata
+- openid4vp_verifier_metadata
+- openid_federation_entity_configuration
+transports:
+- digital_credentials_api
+- qr
+- deep_link
+- nfc
+- ble
+- wifi_aware
+feature_flags:
+  eudi:
+    enabled: true
+  remote_signing:
+    enabled: false
+  qualified_signatures:
+    enabled: false
+  zero_knowledge:
+    enabled: optional
+availability:
+  surfaces:
+  - rust
+  - ffi
+  - wasm
+  - typescript_browser
+  - typescript_node
+  - swift
+  - kotlin
+  - jni
+  - hosted_api
+execution_targets:
+- local
+- platform_native
+- hosted_service
+- sibling_repo
+- external_provider
+- local_or_remote
+fail_closed_capabilities:
+  rule: 'A command invoked with inputs that require a capability the current configuration
+    does not provide MUST fail closed with a typed unsupported_capability error. It
+    MUST NOT silently degrade, partially dereference, or fall back to behavior the
+    capability registry does not declare. DID URL path and query dereferencing without
+    a method resolver is the canonical example.
+
+'
+capability_registry:
+  did_creation:
+    category: feature
+    version: '1.0'
+    status: supported
+    requires: []
+    conflicts_with: []
+  did_resolution:
+    category: feature
+    version: '1.0'
+    status: supported
+    requires: []
+    conflicts_with: []
+  did_parsing:
+    category: feature
+    version: '1.0'
+    status: supported
+    requires: []
+    conflicts_with: []
+  did_local_dereferencing:
+    category: feature
+    version: '1.0'
+    status: supported
+    requires:
+    - did_parsing
+    conflicts_with: []
+  did_url_dereferencing:
+    category: feature
+    version: '1.0'
+    status: supported
+    requires:
+    - did_parsing
+    - did_resolution
+    conflicts_with: []
+  did_validation:
+    category: feature
+    version: '1.0'
+    status: supported
+    requires:
+    - did_resolution
+    conflicts_with: []
+  did_update:
+    category: feature
+    version: '1.0'
+    status: supported
+    requires:
+    - did_resolution
+    conflicts_with: []
+  did_deactivation:
+    category: feature
+    version: '1.0'
+    status: supported
+    requires:
+    - did_update
+    conflicts_with: []
+  did_key_rotation:
+    category: feature
+    version: '1.0'
+    status: supported
+    requires:
+    - did_update
+    conflicts_with: []
+  did_relationship_policy:
+    category: feature
+    version: '1.0'
+    status: supported
+    requires:
+    - did_update
+    conflicts_with: []
+  did_compromise_recovery:
+    category: feature
+    version: '1.0'
+    status: supported
+    requires:
+    - did_update
+    conflicts_with: []
+  did_me_default_profile:
+    category: protocol
+    version: '1'
+    status: experimental
+    requires:
+    - did_creation
+    - did_resolution
+    - did_update
+    - alg_ed25519
+    - alg_x25519
+    - alg_p256
+    - alg_mldsa87
+    conflicts_with: []
+    notes:
+    - did:me v1 default profile requires post-quantum control through ML-DSA-87.
+    - did:me v1 default profile also requires hybrid key agreement with X25519 plus
+      at least one of ML-KEM-768 or ML-KEM-1024.
+  alg_ed25519:
+    category: algorithm
+    version: '1.0'
+    status: supported
+    requires: []
+    conflicts_with: []
+  alg_x25519:
+    category: algorithm
+    version: '1.0'
+    status: supported
+    requires: []
+    conflicts_with: []
+  alg_p256:
+    category: algorithm
+    version: '1.0'
+    status: supported
+    requires: []
+    conflicts_with: []
+  alg_secp256k1:
+    category: algorithm
+    version: '1.0'
+    status: supported
+    requires: []
+    conflicts_with: []
+  alg_mldsa87:
+    category: algorithm
+    version: '1.0'
+    status: experimental
+    requires: []
+    conflicts_with: []
+  alg_mldsa44:
+    category: algorithm
+    version: '1.0'
+    status: experimental
+    requires: []
+    conflicts_with: []
+    notes:
+    - did:me v1 pins the ML-DSA-44 Multikey encoding for validation-side recognition
+      even when a build does not generate ML-DSA-44 keys.
+  alg_mldsa65:
+    category: algorithm
+    version: '1.0'
+    status: experimental
+    requires: []
+    conflicts_with: []
+    notes:
+    - did:me v1 pins the ML-DSA-65 Multikey encoding for validation-side recognition
+      even when a build does not generate ML-DSA-65 keys.
+  alg_mlkem768:
+    category: algorithm
+    version: '1.0'
+    status: experimental
+    requires: []
+    conflicts_with: []
+  alg_mlkem1024:
+    category: algorithm
+    version: '1.0'
+    status: experimental
+    requires: []
+    conflicts_with: []
+  wallet:
+    category: feature
+    version: '1.0'
+    status: supported
+    requires: []
+    conflicts_with: []
+  credential_issuance:
+    category: feature
+    version: '1.0'
+    status: supported
+    requires:
+    - holder_binding
+    conflicts_with: []
+    notes:
+    - Covers issuer-side credential issuance through the local Identity facade; protocol-specific
+      request validation and credential construction remain owned by sibling crates.
+  credential_validation:
+    category: feature
+    version: '1.0'
+    status: supported
+    requires:
+    - did_resolution
+    conflicts_with: []
+    notes:
+    - Covers provider-backed credential validation policy, including signature, issuer,
+      status, schema, trust, and binding checks.
+  credential_status_check:
+    category: feature
+    version: '1.0'
+    status: supported
+    requires:
+    - credential_validation
+    conflicts_with: []
+    notes:
+    - Covers local-or-remote credential status evidence checks without implying hosted
+      wallet inventory mutation.
+  trust_evaluation:
+    category: feature
+    version: '1.0'
+    status: supported
+    requires: []
+    conflicts_with: []
+    notes:
+    - Covers local trust evaluation over configured trust anchors, trust lists, status
+      evidence, and policy.
+  trust_list_ingestion:
+    category: feature
+    version: '1.0'
+    status: supported
+    requires:
+    - trust_evaluation
+    conflicts_with: []
+    notes:
+    - Covers verified trusted-list ingestion; package lanes must fail closed unless
+      XMLDSig verification is available or injected.
+  status_resolution:
+    category: feature
+    version: '1.0'
+    status: supported
+    requires:
+    - credential_status_check
+    conflicts_with: []
+    notes:
+    - Covers aggregate status resolution across token status lists, bitstring status
+      lists, CRLs, OCSP, and future status mechanisms.
+  holder_binding:
+    category: feature
+    version: '1.0'
+    status: supported
+    requires: []
+    conflicts_with: []
+  openid4vci_credential_request:
+    category: protocol
+    version: '1.0'
+    status: supported
+    requires:
+    - wallet
+    - holder_binding
+    conflicts_with: []
+    notes:
+    - Covers wallet-side OpenID4VCI credential acquisition from an offer; issuer endpoint
+      state machines remain in reallyme-openidvc.
+  openid4vp:
+    category: protocol
+    version: '1.0'
+    status: supported
+    requires:
+    - holder_binding
+    conflicts_with: []
+    notes:
+    - Covers OpenID4VP presentation request, presentation, and verification facade
+      flows backed by reallyme-openid4vp.
+  verifier:
+    category: feature
+    version: '1.0'
+    status: supported
+    requires:
+    - openid4vp
+    conflicts_with: []
+    notes:
+    - Covers verifier-side request construction and presentation verification surfaces
+      exposed through the local Identity facade.
+  presentation_verification:
+    category: feature
+    version: '1.0'
+    status: supported
+    requires:
+    - openid4vp
+    - verifier
+    conflicts_with: []
+    notes:
+    - Covers provider-backed verification of presentation proofs, holder binding,
+      status evidence, issuer trust, wallet trust, and verifier policy.
+  wallet_attestation:
+    category: protocol
+    version: '1.0'
+    status: experimental
+    requires:
+    - wallet
+    - holder_binding
+    conflicts_with: []
+  zero_knowledge:
+    category: proof_suite
+    version: '1.0'
+    status: experimental
+    requires: []
+    conflicts_with: []
+capability_query:
+  canonical_for:
+  - supported_capability_queries
+  commands:
+  - get
+  response_fields:
+    get:
+    - capabilities
+Capability:
+  id: string
+  category:
+    enum:
+    - credential_format
+    - protocol
+    - transport
+    - trust_framework
+    - algorithm
+    - proof_suite
+    - feature
+    - status_mechanism
+  version: string
+  status:
+    enum:
+    - supported
+    - experimental
+    - unavailable
+  requires: array
+  conflicts_with: array

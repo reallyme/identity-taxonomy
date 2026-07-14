@@ -1,0 +1,1195 @@
+# SPDX-FileCopyrightText: Copyright © 2026 ReallyMe LLC. All rights reserved
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+# GENERATED FILE. Do not edit by hand.
+# Regenerate with: ruby scripts/generate_taxonomy_views.rb
+
+---
+schema: reallyme.identity.hosted_api.v1
+title: ReallyMe Identity Hosted API Taxonomy
+generated_from: master-identity-taxonomy.yaml
+hosted_first_path:
+- tenants
+- organisations
+- subjects
+- issuers
+- verifiers
+- wallet_providers
+- wallet_registrations
+- api_keys
+- billing
+- webhooks
+- jobs
+- batches
+resources:
+  tenants:
+    scope: platform
+    owner: hosted_service
+    commands:
+    - create
+    - get
+    - list
+    - update
+    - suspend
+    - activate
+    - delete
+    request_fields:
+      create_update:
+      - regions
+      - data_residency
+      - retention_policy
+      - webhook_defaults
+      - trust_policy
+      - risk_policy
+  organisations:
+    scope: platform
+    owner: hosted_service
+    commands:
+    - create
+    - get
+    - list
+    - update
+    - verify
+    - suspend
+    - activate
+    - delete
+    - get_registration_status
+    subresources:
+      identifiers:
+        commands:
+        - add
+        - remove
+      domains:
+        commands:
+        - add
+        - verify
+        - remove
+      certificates:
+        commands:
+        - add
+        - remove
+      trust_frameworks:
+        commands:
+        - add
+        - remove
+  subjects:
+    scope: platform
+    owner: hosted_service
+    commands:
+    - create
+    - get
+    - list
+    - update
+    - merge
+    - delete
+    subresources:
+      credentials:
+        commands:
+        - list
+      consents:
+        commands:
+        - list
+      sessions:
+        commands:
+        - list
+      data:
+        commands:
+        - export
+        - delete
+  issuers:
+    scope: platform
+    owner: hosted_service
+    commands:
+    - register
+    - get
+    - list
+    - update
+    - suspend
+    - activate
+    - deregister
+    - publish_metadata
+    - validate_metadata
+    - rotate_keys
+    - rotate_certificates
+    request_fields:
+      register_update:
+      - authorization_server
+      - notification_endpoint
+      - status_provider
+      - trust_framework
+    subresources:
+      credential_configurations:
+        view_of: credential_configurations
+        commands:
+        - register
+        - update
+        - remove
+  verifiers:
+    scope: platform
+    owner: hosted_service
+    commands:
+    - register
+    - get
+    - list
+    - update
+    - suspend
+    - activate
+    - deregister
+    - publish_metadata
+    - validate_metadata
+    - rotate_keys
+    - rotate_certificates
+    request_fields:
+      register_update:
+      - response_endpoint
+      - trust_policy
+      - presentation_policy
+    subresources:
+      clients:
+        commands:
+        - register
+        - update
+        - remove
+  wallet_providers:
+    scope: platform
+    owner: hosted_service
+    commands:
+    - register
+    - get
+    - list
+    - update
+    - suspend
+    - activate
+    - deregister
+    - publish_metadata
+    - validate_metadata
+    - register_wallet_solution
+    - rotate_keys
+    - rotate_certificates
+    request_fields:
+      register_update:
+      - attestation_policy
+      - backup_policy
+      - device_policy
+      - wallet_instance_policy
+    views:
+      issue_wallet_attestation:
+        canonical_command: wallet_attestations.issue
+        actor: wallet_provider
+  claim_sets:
+    scope: core
+    owner: hosted_service
+    commands:
+    - create
+    - get
+    - list
+    - update
+    - version
+    - publish
+    - deprecate
+    - validate
+    - compare_versions
+  schemas:
+    scope: core
+    owner: hosted_service
+    commands:
+    - create
+    - get
+    - list
+    - update
+    - version
+    - validate
+    - publish
+    - deprecate
+    - revoke
+    - resolve
+    - import
+    - export
+    - compare_versions
+    request_fields:
+      create_update:
+      - claims
+      - required_claims
+      - optional_claims
+      - selective_disclosure_policy
+      - display_metadata
+      - rendering_metadata
+  namespaces:
+    scope: core
+    owner: hosted_service
+    commands:
+    - register
+    - get
+    - list
+    - update
+    - validate
+    - deprecate
+    - map_claims
+  credential_configurations:
+    scope: core
+    owner: hosted_service
+    commands:
+    - create
+    - get
+    - list
+    - update
+    - publish
+    - validate
+    - activate
+    - suspend
+    - deprecate
+    - delete
+    request_fields:
+      create_update:
+      - format
+      - profile
+      - schema
+      - claims
+      - display
+      - binding_methods
+      - signing_algorithms
+      - proof_types
+      - status_method
+      - validity_period
+      - refresh_policy
+      - issuance_policy
+      - assurance_level
+      - trust_framework
+      - eidas_category
+  credential_records:
+    scope: platform
+    owner: hosted_service
+    commands:
+    - get
+    - list
+    - archive
+    - delete
+    - get_status_history
+    - get_issuance_record
+    - get_audit_trail
+    - attach_evidence
+    - get_evidence
+    - verify_evidence
+  issuance_sessions:
+    scope: core
+    owner: hosted_service
+    commands:
+    - create
+    - get
+    - list
+    - start
+    - authorize
+    - continue
+    - approve
+    - reject
+    - complete
+    - cancel
+    - expire
+    - retry
+    - get_status
+    - get_events
+    - bind_holder
+    - bind_wallet
+    - bind_device
+    request_fields:
+      create:
+        requirements:
+        - user_authentication
+        - identity_proofing
+        - consent
+        - assurance_level
+        - manual_review
+  privacy:
+    scope: core
+    owner: hosted_service
+    mechanism_for:
+    - subjects.data
+    commands:
+    - evaluate_data_minimization
+    - detect_over_requesting
+    - detect_over_disclosure
+    - calculate_linkability_risk
+    - enforce_retention_policy
+    - enforce_purpose_limitation
+    - redact_logs
+    - anonymize_record
+    - pseudonymize_subject
+    - generate_pairwise_identifier
+    - delete_subject_data
+    - export_subject_data
+  wallet_registrations:
+    scope: platform
+    owner: hosted_service
+    commands:
+    - register
+    - get
+    - update
+    - suspend
+    - activate
+    - deregister
+    - publish_metadata
+    - refresh_metadata
+  wallet_instances:
+    scope: core
+    owner: hosted_service
+    commands:
+    - register
+    - get
+    - list
+    - verify
+    - bind_device
+    - unbind_device
+    - rotate_keys
+    - suspend
+    - activate
+    - revoke
+    - delete
+    views:
+      issue_attestation:
+        canonical_command: wallet_attestations.issue
+        scoped_by: wallet_instance_id
+  identity_sessions:
+    scope: platform
+    owner: hosted_service
+    commands:
+    - create
+    - get
+    - list
+    - start
+    - continue
+    - complete
+    - cancel
+    - expire
+    - retry
+    - get_status
+    - get_result
+    - get_events
+    request_fields:
+      create:
+        requirements:
+        - assurance_level
+        - evidence
+        - manual_review
+  identity_proofing:
+    scope: platform
+    owner: hosted_service
+    commands:
+    - verify_document
+    - verify_nfc_chip
+    - verify_address
+    - verify_phone
+    - verify_email
+    - verify_bank_account
+    - verify_biometric
+    - verify_liveness
+    - compare_face
+    - verify_authoritative_source
+    - verify_existing_credential
+    - calculate_assurance_level
+    - create_evidence
+    - validate_evidence
+    request_fields:
+      verify_document:
+        document_type:
+          enum:
+          - passport
+          - identity_card
+          - driving_licence
+          - residence_permit
+          - other
+  evidence:
+    scope: platform
+    owner: hosted_service
+    commands:
+    - create
+    - get
+    - list
+    - validate
+    - attach
+    - detach
+    - expire
+    - delete
+    - verify_source
+    - get_assurance_level
+  onboarding:
+    scope: platform
+    owner: hosted_service
+    commands:
+    - create_session
+    - collect_identity
+    - verify_identity
+    - collect_consent
+    - screen
+    - approve
+    - reject
+    - refer_for_review
+    - issue_credential
+    - get_status
+  refresh_tokens:
+    scope: core
+    owner: hosted_service
+    mechanism_for:
+    - credential_state.refresh
+    commands:
+    - create
+    - validate
+    - rotate
+    - revoke
+  eidas:
+    scope: core
+    owner: hosted_service
+    notes: 'Trusted-list mechanics (LOTL, member-state lists, validation at time)
+      live in trust.lists. This group covers eIDAS actor registration, conformity
+      assessment, and Commission notifications.
+
+'
+    subresources:
+      entities:
+        commands:
+        - register
+        - get
+        - list
+        - update
+        - suspend
+        - activate
+        - deregister
+        - validate
+        checks:
+          validate:
+          - role
+          - authorization
+          - member_state
+          - conformity
+      roles:
+        commands:
+        - assign
+        - remove
+        - validate
+        - list_authorized_roles
+      conformity:
+        commands:
+        - register_certificate
+        - validate
+        - get_status
+        checks:
+          validate:
+          - certificate
+          - scope
+          - expiration
+          - assessment_body
+      notifications:
+        commands:
+        - publish
+        - receive
+        - validate
+        - acknowledge
+        - list
+      supervision:
+        commands:
+        - submit_conformity_assessment_report
+        - respond_to_information_request
+        - notify_service_change
+        - notify_termination
+        - execute_termination_plan
+        - transfer_records
+        - get_supervisory_status
+        request_fields:
+          execute_termination_plan:
+          - records_transfer_target
+          - user_notification
+          - service_continuity_plan
+          - retention_policy
+  eudi:
+    scope: core
+    owner: hosted_service
+    notes: 'Wallet instances and wallet attestations live in the top-level wallet_instances
+      and wallet_attestations groups; they are not duplicated here.
+
+'
+    subresources:
+      ecosystem:
+        commands:
+        - register_participant
+        - update_participant
+        - suspend_participant
+        - remove_participant
+        - resolve_participant
+        - validate_participant
+      wallet_solutions:
+        commands:
+        - register
+        - certify
+        - validate
+        - get
+        - list
+        - update
+        - suspend
+        - activate
+        - revoke
+        - report_vulnerability
+        - notify_substantial_change
+        - recertify
+        checks:
+          validate:
+          - conformity
+          - provider
+      relying_parties:
+        commands:
+        - register
+        - get
+        - list
+        - update
+        - suspend
+        - activate
+        - deregister
+        - validate
+        checks:
+          validate:
+          - registration
+          - registration_certificate
+          - access_certificate
+          - requested_attributes
+          - declared_purpose
+          - retention_policy
+      issuers:
+        commands:
+        - register
+        - suspend
+        - activate
+        - deregister
+        - validate
+        checks:
+          validate:
+          - authorization
+          - access_certificate
+          - credential_type_authorization
+      access_certificates:
+        commands:
+        - request
+        - issue
+        - validate
+        - renew
+        - revoke
+        - get_status
+      registration_certificates:
+        commands:
+        - request
+        - issue
+        - validate
+        - renew
+        - revoke
+        - get_status
+        checks:
+          validate:
+          - registered_attributes
+          - entitlement
+          - issuer_authorization
+          - validity
+      credentials:
+        commands:
+        - configure
+        - reissue
+        - renew
+        - refresh
+        - suspend
+        - reactivate
+        - validate
+        views:
+          issue:
+            canonical_command: issuance.issue
+            scoped_by: category
+          present:
+            canonical_command: presentations.present
+            scoped_by: category
+          revoke:
+            canonical_command: credential_state.revoke
+            scoped_by: category
+        request_fields:
+          all:
+            category:
+              enum:
+              - pid
+              - qeaa
+              - pub_eaa
+              - eaa
+          validate:
+          - credential
+          - verification_context
+          - policy
+        checks:
+          validate:
+            common:
+            - status
+            - expiration
+            - claims
+            - schema
+            - trust_chain
+            - holder_binding
+            - assurance_level
+            - issuer_authorization
+            by_category:
+              pid:
+              - authoritative_source
+              - required_attributes
+              - namespace
+              qeaa:
+              - qualified_status
+              - qtsp
+              - trust_service
+              - certificate
+              - certificate_chain
+              - valid_at_issuance_time
+              - valid_at_presentation_time
+              pub_eaa:
+              - public_body
+              - authentic_source
+              eaa: []
+      pseudonyms:
+        commands:
+        - generate
+        - resolve
+        - rotate
+        - revoke
+        - validate
+        checks:
+          validate:
+          - scope
+          - relying_party_binding
+          - sector_binding
+          - expiration
+      person_identification_data:
+        commands:
+        - validate
+        - normalize
+        - match
+        - compare
+        - resolve_authoritative_source
+        - verify_authoritative_source
+        checks:
+          validate:
+          - mandatory_attributes
+          - attribute_freshness
+      attributes:
+        commands:
+        - register
+        - get
+        - list
+        - update
+        - deprecate
+        - validate
+        - map
+        - normalize
+        - resolve_authoritative_source
+        - verify_authentic_source
+        checks:
+          validate:
+          - issuer_authorization
+          - semantics
+      rulebooks:
+        commands:
+        - get
+        - list
+        - validate
+        - evaluate
+        - get_version
+        - compare_versions
+        - resolve_requirements
+        - validate_implementation
+        - get_supported_profiles
+  qualified_trust_services:
+    scope: core
+    owner: hosted_service
+    commands:
+    - register
+    - get
+    - list
+    - update
+    - suspend
+    - activate
+    - revoke
+    - remove
+    - evaluate
+    checks:
+      evaluate:
+      - provider_authorization
+      - service_type
+      - service_status
+      - qualified_status
+      - territory
+      - certificate
+      - trust_list_entry
+      - valid_at_time
+  remote_signing:
+    scope: core
+    owner: hosted_service
+    commands:
+    - create_session
+    - get_session
+    - authorize
+    - sign
+    - validate
+    - cancel
+    - get_status
+    checks:
+      validate:
+      - sad
+      - signer_authentication
+      - signature_activation_data
+  purposes:
+    scope: platform
+    owner: hosted_service
+    commands:
+    - create
+    - get
+    - list
+    - update
+    - validate
+    - approve
+    - reject
+    - deprecate
+    - validate_claim_request
+    - validate_retention_period
+    request_fields:
+      create_update:
+      - allowed_claims
+      - allowed_credential_types
+  authorizations:
+    scope: platform
+    owner: hosted_service
+    commands:
+    - create
+    - grant
+    - deny
+    - validate
+    - revoke
+    - introspect
+    - delegate
+    - restrict
+    - get_permissions
+    - evaluate_policy
+    checks:
+      validate:
+      - scope
+      - audience
+      - subject
+  mandates:
+    scope: core
+    owner: hosted_service
+    commands:
+    - create
+    - issue
+    - validate
+    - present
+    - suspend
+    - reactivate
+    - revoke
+    - delegate
+    checks:
+      validate:
+      - scope
+      - representative
+      - represented_party
+      - legal_entity
+      - expiration
+      - chain_of_authority
+  policies:
+    scope: core
+    owner: hosted_service
+    commands:
+    - create
+    - get
+    - list
+    - update
+    - version
+    - activate
+    - deactivate
+    - delete
+    - validate
+    - evaluate
+    - simulate
+    - explain
+    - test
+    - import
+    - export
+    - compare_versions
+    typed_policies:
+      verification_policy:
+        request_fields:
+        - required_credentials
+        - required_claims
+        - optional_claims
+        - predicates
+        - allowed_issuers
+        - denied_issuers
+        - allowed_formats
+        - allowed_algorithms
+        - status_requirements
+        - trust_requirements
+        - assurance_requirements
+        - freshness_requirements
+        - holder_binding_requirements
+        - wallet_attestation_requirements
+        - data_minimization_rules
+        - manual_review_rules
+      issuance_policy:
+        request_fields:
+        - eligibility_rules
+        - identity_proofing_requirements
+        - evidence_requirements
+        - assurance_requirements
+        - binding_requirements
+        - validity_period
+        - refresh_rules
+        - status_method
+        - manual_review_rules
+        - issuer_authorization_rules
+      disclosure_policy:
+        request_fields:
+        - required_claims
+        - optional_claims
+        - forbidden_claims
+        - predicates
+        - minimization_rules
+        - retention_rules
+        extra_commands:
+        - detect_over_disclosure
+      risk_policy:
+        request_fields:
+        - thresholds
+        - actions
+        - step_up_rules
+        - manual_review_rules
+  risk:
+    scope: adjacent
+    owner: hosted_service
+    commands:
+    - assess
+    - score
+    - explain
+    - get_signals
+    - add_signal
+    - evaluate
+    - require_step_up
+    - refer_for_review
+    - approve
+    - reject
+    request_fields:
+      evaluate:
+        target:
+          enum:
+          - device
+          - wallet
+          - issuer
+          - verifier
+          - credential
+          - presentation
+          - transaction
+  fraud:
+    scope: adjacent
+    owner: hosted_service
+    commands:
+    - detect
+    - report
+    - get_signals
+    - block
+    - unblock
+    request_fields:
+      detect:
+        signal:
+          enum:
+          - replay
+          - nonce_reuse
+          - duplicate_identity
+          - synthetic_identity
+          - credential_cloning
+          - wallet_cloning
+          - document_fraud
+          - biometric_fraud
+          - issuer_impersonation
+          - verifier_impersonation
+  screening:
+    scope: adjacent
+    owner: hosted_service
+    commands:
+    - screen
+    - rescreen
+    - get_result
+    - resolve_match
+    - dismiss_match
+    - escalate_match
+    request_fields:
+      screen:
+        target:
+          enum:
+          - person
+          - organisation
+        lists:
+          enum:
+          - sanctions
+          - pep
+          - adverse_media
+  compliance:
+    scope: adjacent
+    owner: hosted_service
+    commands:
+    - evaluate
+    - get_requirements
+    - create_case
+    - get_case
+    - list_cases
+    - submit_evidence
+    - request_evidence
+    - approve
+    - reject
+    - escalate
+    - close_case
+    - reopen_case
+    - export_report
+  incidents:
+    scope: platform
+    owner: hosted_service
+    commands:
+    - report
+    - assess
+    - notify_supervisory_body
+    - notify_subjects
+    - suspend_affected
+    - remediate
+    - close
+    - export_report
+    request_fields:
+      report:
+      - incident_type
+      - affected_wallets
+      - affected_credentials
+      - detected_at
+      - severity
+      notify_supervisory_body:
+      - authority
+      - incident_report
+      - notification_deadline
+      notify_subjects:
+      - subject_scope
+      - notification_template
+      - delivery_channels
+  events:
+    scope: platform
+    owner: hosted_service
+    commands:
+    - get
+    - list
+    - search
+    - replay
+    - acknowledge
+    - verify_signature
+    - export
+  webhooks:
+    scope: platform
+    owner: hosted_service
+    commands:
+    - create
+    - get
+    - list
+    - update
+    - enable
+    - disable
+    - delete
+    - rotate_secret
+    - test
+    - replay_event
+    - verify_signature
+  audit:
+    scope: platform
+    owner: hosted_service
+    commands:
+    - record
+    - get
+    - search
+    - export
+    - verify_integrity
+    - anchor
+    - get_history
+    request_fields:
+      get_history:
+        subject:
+          enum:
+          - subject
+          - credential
+          - presentation
+          - trust_decision
+          - administrative
+          - key
+          - policy
+          - consent
+          - incident
+          - wallet_instance
+    retention:
+      policy_field: retention_policy
+      default_minimum: jurisdiction_policy
+    integrity_mechanism:
+    - hash_chain
+    - qualified_timestamp_optional
+    - external_anchor_optional
+  evidence_log:
+    scope: platform
+    owner: hosted_service
+    commands:
+    - append
+    - get
+    - search
+    - seal
+    - verify
+    - archive
+    - export
+    retention:
+      policy_field: retention_policy
+      default_minimum: jurisdiction_policy
+    integrity_mechanism:
+    - hash_chain
+    - qualified_timestamp_optional
+    - external_anchor_optional
+  batches:
+    scope: platform
+    owner: hosted_service
+    commands:
+    - create
+    - get
+    - list
+    - add_item
+    - remove_item
+    - submit
+    - cancel
+    - retry_failed
+    - get_results
+    - export_results
+  jobs:
+    scope: platform
+    owner: hosted_service
+    commands:
+    - create
+    - get
+    - list
+    - cancel
+    - retry
+    - get_status
+    - get_result
+    - get_errors
+  idempotency:
+    scope: platform
+    owner: hosted_service
+    commands:
+    - create_key
+    - validate_key
+    - get_result
+    - expire_key
+  sandbox:
+    scope: platform
+    owner: hosted_service
+    commands:
+    - create_tenant
+    - reset_tenant
+    - create_test_actor
+    - create_test_subject
+    - issue_test_credential
+    - create_test_presentation
+    - simulate
+    request_fields:
+      create_test_actor:
+        kind:
+          enum:
+          - issuer
+          - wallet
+          - verifier
+      simulate:
+        scenario:
+          enum:
+          - issuance
+          - presentation
+          - revocation
+          - suspension
+          - expiration
+          - key_compromise
+          - trust_list_change
+          - wallet_attestation_failure
+          - invalid_signature
+          - untrusted_issuer
+          - error
+  api_keys:
+    scope: platform
+    owner: hosted_service
+    commands:
+    - create
+    - get
+    - list
+    - rotate
+    - restrict
+    - revoke
+  clients:
+    scope: platform
+    owner: hosted_service
+    commands:
+    - register
+    - get
+    - list
+    - update
+    - rotate_secret
+    - rotate_keys
+    - suspend
+    - activate
+    - delete
+  access_control:
+    scope: platform
+    owner: hosted_service
+    commands:
+    - create_role
+    - get_role
+    - list_roles
+    - update_role
+    - delete_role
+    - assign_role
+    - remove_role
+    - create_permission
+    - evaluate_permission
+  data:
+    scope: platform
+    owner: hosted_service
+    commands:
+    - export
+    - import
+    - migrate
+    - delete
+    - anonymize
+    - pseudonymize
+    - enforce_retention
+  cache:
+    scope: platform
+    owner: hosted_service
+    commands:
+    - get
+    - refresh
+    - invalidate
+    - clear
+  rate_limits:
+    scope: platform
+    owner: hosted_service
+    commands:
+    - get
+    - configure
+    - reset
+  usage:
+    scope: platform
+    owner: hosted_service
+    commands:
+    - get
+    - list
+    - aggregate
+    - export
+  billing:
+    scope: platform
+    owner: hosted_service
+    commands:
+    - get_usage
+    - get_invoice
+    - list_invoices
+    - estimate_cost

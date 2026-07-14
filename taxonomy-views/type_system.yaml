@@ -1,0 +1,854 @@
+# SPDX-FileCopyrightText: Copyright © 2026 ReallyMe LLC. All rights reserved
+#
+# SPDX-License-Identifier: Apache-2.0
+#
+# GENERATED FILE. Do not edit by hand.
+# Regenerate with: ruby scripts/generate_taxonomy_views.rb
+
+---
+schema: reallyme.identity.type_system.v1
+title: ReallyMe Identity Type System
+generated_from: master-identity-taxonomy.yaml
+surface_scope:
+  sdk_local:
+    description: Local package facade.
+  hosted_service:
+    description: Hosted issuer, verifier, wallet, trust, administration, and operations
+      APIs.
+  sibling_repo:
+    description: Lower-level protocol, wallet, crypto, and identity-core crates.
+  diagnostics:
+    description: Conformance, testing, tracing, and developer-safety surfaces.
+availability:
+  surfaces:
+  - rust
+  - ffi
+  - wasm
+  - typescript_browser
+  - typescript_node
+  - swift
+  - kotlin
+  - jni
+  - hosted_api
+execution_targets:
+- local
+- platform_native
+- hosted_service
+- sibling_repo
+- external_provider
+- local_or_remote
+sdk_dto_registry:
+  CredentialCheckStatusRequest:
+    owner_repo: identity-sdk
+    dto_backing: language_facade
+    surfaces:
+    - rust
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+  CredentialIssueRequest:
+    owner_repo: identity-sdk
+    dto_backing: language_facade
+    surfaces:
+    - rust
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+  CredentialRequest:
+    owner_repo: identity-sdk
+    dto_backing: language_facade
+    surfaces:
+    - rust
+    - swift
+    - kotlin
+  CredentialRequestRequest:
+    owner_repo: identity-sdk
+    dto_backing: language_facade
+    surfaces:
+    - typescript_browser
+    - typescript_node
+  CredentialResourceRecord:
+    owner_repo: identity-sdk
+    dto_backing: language_facade
+    surfaces:
+    - rust
+    - typescript_browser
+    - typescript_node
+    - kotlin
+  CredentialStatusResult:
+    owner_repo: identity-sdk
+    dto_backing: language_facade
+    surfaces:
+    - rust
+    - typescript_browser
+    - typescript_node
+    - kotlin
+  CredentialValidateRequest:
+    owner_repo: identity-sdk
+    dto_backing: language_facade
+    surfaces:
+    - rust
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+  CredentialValidationResult:
+    owner_repo: identity-sdk
+    dto_backing: language_facade
+    surfaces:
+    - rust
+    - typescript_browser
+    - typescript_node
+    - kotlin
+  DidCreateRequest:
+    owner_repo: identity-sdk
+    dto_backing: native_abi
+    surfaces:
+    - rust
+    - ffi
+    - wasm
+    - typescript_browser
+    - typescript_node
+    - kotlin
+    - jni
+  DidDeactivateRequest:
+    owner_repo: identity-sdk
+    dto_backing: native_abi
+    surfaces:
+    - rust
+    - ffi
+    - wasm
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    - jni
+  DidDereferenceRequest:
+    owner_repo: identity-sdk
+    dto_backing: native_abi
+    surfaces:
+    - rust
+    - ffi
+    - wasm
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    - jni
+  DidDereferenceResult:
+    owner_repo: identity-sdk
+    dto_backing: native_abi
+    surfaces:
+    - rust
+    - ffi
+    - wasm
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    - jni
+  DidDocument:
+    owner_repo: identity-sdk
+    dto_backing: native_abi
+    surfaces:
+    - rust
+    - ffi
+    - wasm
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    - jni
+  DidParseRequest:
+    owner_repo: identity-sdk
+    dto_backing: native_abi
+    surfaces:
+    - rust
+    - ffi
+    - wasm
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    - jni
+  DidParseResult:
+    owner_repo: identity-sdk
+    dto_backing: native_abi
+    surfaces:
+    - rust
+    - ffi
+    - wasm
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    - jni
+  DidResolveRequest:
+    owner_repo: identity-sdk
+    dto_backing: native_abi
+    surfaces:
+    - rust
+    - ffi
+    - wasm
+    - typescript_browser
+    - typescript_node
+    - kotlin
+    - jni
+  DidRotateAllKeysRequest:
+    owner_repo: identity-sdk
+    dto_backing: native_abi
+    surfaces:
+    - rust
+    - ffi
+    - wasm
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    - jni
+  DidRotateKeyRequest:
+    owner_repo: identity-sdk
+    dto_backing: native_abi
+    surfaces:
+    - rust
+    - ffi
+    - wasm
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    - jni
+  DidRotateRelationshipKeysRequest:
+    owner_repo: identity-sdk
+    dto_backing: native_abi
+    surfaces:
+    - rust
+    - ffi
+    - wasm
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    - jni
+  DidSetKeyRelationshipsRequest:
+    owner_repo: identity-sdk
+    dto_backing: native_abi
+    surfaces:
+    - rust
+    - ffi
+    - wasm
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    - jni
+  DidUpdateRequest:
+    owner_repo: identity-sdk
+    dto_backing: native_abi
+    surfaces:
+    - rust
+    - ffi
+    - wasm
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    - jni
+  DidValidationRequest:
+    owner_repo: identity-sdk
+    dto_backing: native_abi
+    surfaces:
+    - rust
+    - ffi
+    - wasm
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    - jni
+  DidValidationResult:
+    owner_repo: identity-sdk
+    dto_backing: native_abi
+    surfaces:
+    - rust
+    - ffi
+    - wasm
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+    - jni
+  PresentationRecord:
+    owner_repo: identity-sdk
+    dto_backing: language_facade
+    surfaces:
+    - rust
+    - typescript_browser
+    - typescript_node
+    - kotlin
+  PresentationRequest:
+    owner_repo: identity-sdk
+    dto_backing: language_facade
+    surfaces:
+    - rust
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+  PresentationRequestCreateRequest:
+    owner_repo: identity-sdk
+    dto_backing: language_facade
+    surfaces:
+    - rust
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+  PresentationRequestRecord:
+    owner_repo: identity-sdk
+    dto_backing: language_facade
+    surfaces:
+    - rust
+    - typescript_browser
+    - typescript_node
+    - kotlin
+  PresentationVerifyRequest:
+    owner_repo: identity-sdk
+    dto_backing: language_facade
+    surfaces:
+    - rust
+    - typescript_browser
+    - typescript_node
+    - swift
+    - kotlin
+  ReallyMeCredentialCheckStatusRequest:
+    owner_repo: identity-sdk
+    dto_backing: language_facade
+    surfaces:
+    - swift
+  ReallyMeCredentialIssueRequest:
+    owner_repo: identity-sdk
+    dto_backing: language_facade
+    surfaces:
+    - swift
+  ReallyMeCredentialRecord:
+    owner_repo: identity-sdk
+    dto_backing: language_facade
+    surfaces:
+    - swift
+  ReallyMeCredentialRequest:
+    owner_repo: identity-sdk
+    dto_backing: language_facade
+    surfaces:
+    - swift
+  ReallyMeCredentialStatusResult:
+    owner_repo: identity-sdk
+    dto_backing: language_facade
+    surfaces:
+    - swift
+  ReallyMeCredentialValidateRequest:
+    owner_repo: identity-sdk
+    dto_backing: language_facade
+    surfaces:
+    - swift
+  ReallyMeCredentialValidationResult:
+    owner_repo: identity-sdk
+    dto_backing: language_facade
+    surfaces:
+    - swift
+  ReallyMeDidCreateRequest:
+    owner_repo: identity-sdk
+    dto_backing: native_abi
+    surfaces:
+    - swift
+  ReallyMeDidDocument:
+    owner_repo: identity-sdk
+    dto_backing: native_abi
+    surfaces:
+    - swift
+  ReallyMeDidResolutionResult:
+    owner_repo: identity-sdk
+    dto_backing: native_abi
+    surfaces:
+    - swift
+  ReallyMeDidResolveRequest:
+    owner_repo: identity-sdk
+    dto_backing: native_abi
+    surfaces:
+    - swift
+  ReallyMePresentationRecord:
+    owner_repo: identity-sdk
+    dto_backing: language_facade
+    surfaces:
+    - swift
+  ReallyMePresentationRequest:
+    owner_repo: identity-sdk
+    dto_backing: language_facade
+    surfaces:
+    - swift
+  ReallyMePresentationRequestCreateRequest:
+    owner_repo: identity-sdk
+    dto_backing: language_facade
+    surfaces:
+    - swift
+  ReallyMePresentationRequestRecord:
+    owner_repo: identity-sdk
+    dto_backing: language_facade
+    surfaces:
+    - swift
+  ReallyMePresentationVerifyRequest:
+    owner_repo: identity-sdk
+    dto_backing: language_facade
+    surfaces:
+    - swift
+  ReallyMeStatusResolutionCheckRequest:
+    owner_repo: identity-sdk
+    dto_backing: language_facade
+    surfaces:
+    - swift
+  ReallyMeStatusResolutionCheckResult:
+    owner_repo: identity-sdk
+    dto_backing: language_facade
+    surfaces:
+    - swift
+  ReallyMeTrustEvaluateRequest:
+    owner_repo: identity-sdk
+    dto_backing: language_facade
+    surfaces:
+    - swift
+  ReallyMeTrustEvaluationResult:
+    owner_repo: identity-sdk
+    dto_backing: language_facade
+    surfaces:
+    - swift
+  ReallyMeTrustListIngestRequest:
+    owner_repo: identity-sdk
+    dto_backing: language_facade
+    surfaces:
+    - swift
+  ReallyMeTrustListIngestResult:
+    owner_repo: identity-sdk
+    dto_backing: language_facade
+    surfaces:
+    - swift
+  ReallyMeVerificationResult:
+    owner_repo: identity-sdk
+    dto_backing: language_facade
+    surfaces:
+    - swift
+  ReallyMeWalletCredentialListRequest:
+    owner_repo: identity-sdk
+    dto_backing: wallet_core_rpc
+    surfaces:
+    - swift
+  ReallyMeWalletCredentialListResult:
+    owner_repo: identity-sdk
+    dto_backing: wallet_core_rpc
+    surfaces:
+    - swift
+  ReallyMeWalletCredentialStoreRequest:
+    owner_repo: identity-sdk
+    dto_backing: wallet_core_rpc
+    surfaces:
+    - swift
+  ReallyMeWalletCredentialStoreResult:
+    owner_repo: identity-sdk
+    dto_backing: wallet_core_rpc
+    surfaces:
+    - swift
+  ReallyMeWalletOpenRequest:
+    owner_repo: identity-sdk
+    dto_backing: language_facade
+    surfaces:
+    - swift
+  ReallyMeWalletOpenResult:
+    owner_repo: identity-sdk
+    dto_backing: language_facade
+    surfaces:
+    - swift
+  StatusResolutionCheckRequest:
+    owner_repo: identity-sdk
+    dto_backing: language_facade
+    surfaces:
+    - rust
+  StatusResolutionCheckResult:
+    owner_repo: identity-sdk
+    dto_backing: language_facade
+    surfaces:
+    - rust
+  TrustEvaluateRequest:
+    owner_repo: identity-sdk
+    dto_backing: language_facade
+    surfaces:
+    - rust
+  TrustEvaluationResult:
+    owner_repo: identity-sdk
+    dto_backing: language_facade
+    surfaces:
+    - rust
+  TrustListIngestRequest:
+    owner_repo: identity-sdk
+    dto_backing: language_facade
+    surfaces:
+    - rust
+  TrustListIngestResult:
+    owner_repo: identity-sdk
+    dto_backing: language_facade
+    surfaces:
+    - rust
+  VerificationResult:
+    owner_repo: identity-sdk
+    dto_backing: language_facade
+    surfaces:
+    - rust
+    - typescript_browser
+    - typescript_node
+    - kotlin
+  WalletCredentialListRequest:
+    owner_repo: identity-sdk
+    dto_backing: wallet_core_rpc
+    surfaces:
+    - rust
+    - typescript_browser
+    - typescript_node
+    - kotlin
+  WalletCredentialListResult:
+    owner_repo: identity-sdk
+    dto_backing: wallet_core_rpc
+    surfaces:
+    - rust
+    - typescript_browser
+    - typescript_node
+    - kotlin
+  WalletCredentialStoreRequest:
+    owner_repo: identity-sdk
+    dto_backing: wallet_core_rpc
+    surfaces:
+    - rust
+    - typescript_browser
+    - typescript_node
+    - kotlin
+  WalletCredentialStoreResult:
+    owner_repo: identity-sdk
+    dto_backing: wallet_core_rpc
+    surfaces:
+    - rust
+    - typescript_browser
+    - typescript_node
+    - kotlin
+  WalletOpenRequest:
+    owner_repo: identity-sdk
+    dto_backing: language_facade
+    surfaces:
+    - rust
+    - typescript_browser
+    - typescript_node
+    - kotlin
+  WalletOpenResult:
+    owner_repo: identity-sdk
+    dto_backing: language_facade
+    surfaces:
+    - rust
+    - typescript_browser
+    - typescript_node
+    - kotlin
+types:
+  IdentityResult:
+    generic: true
+    success_value: T
+    error:
+      "$ref": IdentityError
+    language_bindings:
+      rust: Result<T, IdentityError>
+      typescript: Result<T, IdentityError>
+      swift: Result<T, IdentityError>
+      kotlin: Result<T, IdentityError>
+  IdentityError:
+    proto_message: reallyme.identity.sdk.v1.IdentitySdkError
+    proto_enum_links:
+      domain: reallyme.identity.common.v1.IdentityStackErrorDomain
+      code: reallyme.identity.sdk.v1.IdentitySdkErrorReason
+      wallet_reason: reallyme.identity.sdk.v1.IdentitySdkWalletErrorReason
+      did_reason: reallyme.identity.sdk.v1.IdentitySdkDidErrorReason
+      credential_reason: reallyme.identity.sdk.v1.IdentitySdkCredentialErrorReason
+      presentation_reason: reallyme.identity.sdk.v1.IdentitySdkPresentationErrorReason
+      provider_reason: reallyme.identity.sdk.v1.IdentitySdkProviderErrorReason
+    domain:
+      type: string
+      proto_enum: reallyme.identity.common.v1.IdentityStackErrorDomain
+    code:
+      type: string
+      proto_enum: reallyme.identity.sdk.v1.IdentitySdkErrorReason
+    category:
+      derived_from:
+      - reallyme.identity.sdk.v1.IdentitySdkWalletErrorReason
+      - reallyme.identity.sdk.v1.IdentitySdkDidErrorReason
+      - reallyme.identity.sdk.v1.IdentitySdkCredentialErrorReason
+      - reallyme.identity.sdk.v1.IdentitySdkPresentationErrorReason
+      - reallyme.identity.sdk.v1.IdentitySdkProviderErrorReason
+      enum:
+      - invalid_request
+      - protocol_error
+      - cryptographic_error
+      - trust_error
+      - status_error
+      - policy_error
+      - network_error
+      - provider_error
+      - unsupported_capability
+      - internal_error
+    message:
+      type: string
+      pii: forbidden
+      stability: diagnostic
+    retryable: boolean
+    details:
+      type: object
+      pii: forbidden
+      constraint: stable_non_secret_fields_only
+    cause:
+      type: object
+      pii: forbidden
+      constraint: sanitized_cause_chain_only
+    trace_id: string
+  Capability:
+    id: string
+    category:
+      enum:
+      - credential_format
+      - protocol
+      - transport
+      - trust_framework
+      - algorithm
+      - proof_suite
+      - feature
+      - status_mechanism
+    version: string
+    status:
+      enum:
+      - supported
+      - experimental
+      - unavailable
+    requires: array
+    conflicts_with: array
+  VerificationContext:
+    evaluation_time:
+      type: datetime
+      required: true
+    historical_validation_time:
+      type: datetime
+      required: false
+    presentation_time:
+      type: datetime
+      required: false
+    request_received_at:
+      type: datetime
+      required: false
+    clock_skew_seconds:
+      type: integer
+    network:
+      access:
+        enum:
+        - required
+        - preferred
+        - forbidden
+      cache:
+        enum:
+        - bypass
+        - prefer
+        - require
+        - allow_stale
+      maximum_staleness: duration
+    trust_policy_id: string
+    trust_snapshot_id: string
+    status_snapshot_id: string
+    historical_validation:
+      enabled: boolean
+      require_historical_status: boolean
+    evidence_retention:
+      enum:
+      - none
+      - summary
+      - complete
+  DisclosureConfiguration:
+    selectively_disclosable: array
+    always_disclosed: array
+    never_disclosed: array
+  CredentialStatusConfiguration:
+    method:
+      enum:
+      - token_status_list
+      - bitstring_status_list
+      - issuer_endpoint
+      - none
+    configuration_id: string
+    list_id: string
+  DidResolutionResult:
+    document: DidDocument
+    resolution_metadata:
+      content_type: string
+      retrieved_at: datetime
+      resolver: string
+      error: string
+      assurance_achieved:
+        enum:
+        - attestation_verified
+        - chain_verified
+      sequence: integer
+      deactivation_status:
+        enum:
+        - active
+        - deactivated
+        - absent
+    document_metadata:
+      created: datetime
+      updated: datetime
+      deactivated: boolean
+      version_id: string
+      next_version_id: string
+  CheckResult:
+    name: string
+    outcome:
+      enum:
+      - pass
+      - fail
+      - skipped
+      - indeterminate
+      - not_applicable
+    severity:
+      enum:
+      - info
+      - warning
+      - error
+      - fatal
+    code: string
+    message: string
+    mandatory: boolean
+    source: string
+    started_at: datetime
+    completed_at: datetime
+    evidence: object
+    duration_ms: integer
+  VerificationProvenance:
+    evaluated_at: datetime
+    valid_at: datetime
+    policy_id: string
+    policy_version: string
+    standards_versions:
+      did_me: string
+      w3c_did_core: string
+      openid4vp: string
+      openid4vci: string
+      sd_jwt_vc: string
+      iso_18013_5: string
+      eudi_wallet_arf: string
+    trust_snapshot_id: string
+    status_snapshot_id: string
+    schema_snapshot_id: string
+    resolvers:
+      did_resolver: string
+      trust_resolver: string
+      status_resolver: string
+    evidence_digest: string
+    trace_id: string
+  ValidationResult:
+    valid: boolean
+    decision:
+      enum:
+      - allow
+      - deny
+      - indeterminate
+      - review
+    checks:
+      type: array
+      items:
+        "$ref": CheckResult
+    provenance:
+      "$ref": VerificationProvenance
+    credential:
+      format: string
+      type: string
+      issuer: string
+      subject_binding: string
+      issued_at: datetime
+      expires_at: datetime
+      status:
+        "$ref": CredentialStatusValue
+    claims: object
+    disclosed_claims: object
+    trust:
+      trusted: boolean
+      framework: string
+      role: string
+      assurance_level: string
+      chain: array
+      evaluated_at: datetime
+    policy:
+      policy_id: string
+      version: string
+      matched_rules: array
+    warnings: array
+    errors: array
+  TrustDecision:
+    trusted: boolean
+    decision:
+      enum:
+      - allow
+      - deny
+      - indeterminate
+      - review
+    entity_id: string
+    entity_type: string
+    roles: array
+    trust_frameworks: array
+    trust_chain: array
+    authorization:
+      authorized: boolean
+      credential_types: array
+      jurisdictions: array
+    evaluated_at: datetime
+    valid_at: datetime
+    evidence: array
+    provenance:
+      "$ref": VerificationProvenance
+    warnings: array
+    errors: array
+  CredentialStatusValue:
+    enum:
+    - valid
+    - suspended
+    - revoked
+    - expired
+    - superseded
+    - unknown
+  CredentialStatus:
+    status:
+      "$ref": CredentialStatusValue
+    effective_at: datetime
+    reason_code: string
+    reason: string
+    status_list_uri: string
+    status_list_index: string
+    checked_at: datetime
+  PresentationVerificationResult:
+    valid: boolean
+    decision:
+      enum:
+      - allow
+      - deny
+      - indeterminate
+      - review
+    presentation_checks: array
+    credential_results: array
+    disclosed_claims: object
+    holder_binding: object
+    wallet_trust: object
+    issuer_trust: array
+    policy_result: object
+    transaction_data_result: object
+    provenance:
+      "$ref": VerificationProvenance
+    warnings: array
+    errors: array

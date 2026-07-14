@@ -1,0 +1,45 @@
+# SPDX-FileCopyrightText: Copyright © 2026 ReallyMe LLC. All rights reserved
+#
+# SPDX-License-Identifier: Apache-2.0
+
+# OS/editor noise
+.DS_Store
+**/.DS_Store
+*.swp
+*.swo
+*~
+.idea/
+.vscode/
+
+# Local environment
+.env
+.env.*
+!.env.example
+.secrets/
+*.pem
+*.key
+
+# Local developer state
+/.claude/
+/.codex/
+
+# Tooling caches and dependencies
+node_modules/
+.npm/
+.pnpm-store/
+.yarn/
+!.yarn/patches/
+!.yarn/plugins/
+!.yarn/releases/
+!.yarn/sdks/
+!.yarn/versions/
+.bundle/
+vendor/bundle/
+.ruby-lsp/
+.rubocop_cache/
+.cache/
+
+# Logs and ad hoc validation output
+*.log
+/coverage/
+/tmp/
